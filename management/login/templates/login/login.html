@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+  <title>Welcome</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'login/css/style.css' %}" />
+</head>
+
+<body>
+  <div class="loginbox">
+    <img src="{% static 'login/images/Avatar.jpeg' %}" class="logo" />
+    <h1>Sign In</h1>
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
+    {% endif %}
+
+    <form>
+      {%csrf_token%}
+      <p>Username</p>
+      <input type="text" name="" placeholder="Enter Username" />
+      <p>Password</p>
+      <input type="password" name="" placeholder="Enter Password" />
+      <input type="submit" name="" value="Login" />
+    </form>
+  </div>
+</body>
+
+</html>
