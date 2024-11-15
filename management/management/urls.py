@@ -1,9 +1,14 @@
 from django.contrib import admin
+from django.contrib.auth.views import LoginView
 from django.urls import path, include
-# from django.shortcuts import redirect
+from django.shortcuts import redirect
+from login.custom_admin import custom_admin_site
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', custom_admin_site.urls),
+    path('admin/login/', LoginView.as_view(template_name='custom_admin/admin_login.html'),
+         name='admin-login'),
     path('login/', include('login.urls')),
-    # path('', lambda request: redirect('login')),
+    path('booking/', include('booking.urls')),
+    path('', lambda request: redirect('login')),
 ]

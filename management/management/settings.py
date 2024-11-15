@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'login',
     'booking',
     'stock',
+    'cashier',
 ]
 
 MIDDLEWARE = [
@@ -78,8 +79,12 @@ WSGI_APPLICATION = 'management.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'management_db',
+        'USER': 'django_user',
+        'PASSWORD': '7529',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -102,7 +107,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Custom Models
+AUTH_USER_MODEL = 'login.Employee'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'login.authentication.EmployeeIDBackend',
+]
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -121,7 +132,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'login/static'
+    BASE_DIR / 'login/static',
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
