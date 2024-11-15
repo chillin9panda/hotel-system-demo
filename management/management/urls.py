@@ -5,9 +5,9 @@ from django.shortcuts import redirect
 from login.custom_admin import custom_admin_site
 
 urlpatterns = [
-    path('admin/', custom_admin_site.urls),
-    path('admin/login/', LoginView.as_view(template_name='custom_admin/admin_login.html'),
-         name='admin-login'),
+    # path('admin/', custom_admin_site.urls),
+    # path('admin/login/', LoginView.as_view(template_name='custom_admin/admin_login.html'), name='admin-login'),
+    path('admin/', admin.site.urls),
     path('login/', include('login.urls')),
     path('booking/', include('booking.urls')),
     path('', lambda request: redirect('login')),
