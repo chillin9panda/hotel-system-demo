@@ -1,25 +1,31 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.contrib import messages
 
 # Create your views here.
 
 
-def custom_login(request):
+def login_view(request):
     if request.method == "POST":
-        username = request.POST.get("username")
+        employee_id = request.POST.get("employee_id")
         password = request.POST.get("password")
-        user = authenticate(request, username=username, password=password)
+
+        user = authenticate(
+            request, employee_id=employee_id, password=password)
+
+        if user is not None:
+            print("Authorized: ", user)
+        else:
+            print("login attempt: ", employee_id)
 
         if user is not None:
             login(request, user)
             # Redirect based on role
-            if user.groups.filter(name='Receptionist').exists():
-                return redirect('booking:booking_home')
-            elif user.groups.filter(name='Stock_Manager').exists():
-                return redirect('stock_managment:stock_home')
+            if user.role == 'Receptionist':
+                return redirect('booking:home')
+            elif user.role == 'System Admin':
+                return redirect('admin:index')
             else:
-                return redirect('home')
+                return render(request, 'login/no_role.html')
         else:
-            messages.error(request, "Invalid username or password")
+            return render(request, 'login/login.html', {'error_message': 'Invalid Credentials'})
     return render(request, "login/login.html")

@@ -17,7 +17,7 @@
     {% endfor %}
     {% endif %}
 
-    <form>
+      <form action="{% url 'login:login' %}" method = "post">
       {%csrf_token%}
       <p>Username</p>
       <input type="text" name="employee_id" placeholder="Enter Username" />
@@ -25,6 +25,10 @@
       <input type="password" name="password" placeholder="Enter Password" />
       <input type="submit" name="" value="Login" />
     </form>
+    {% if error_message %}
+      <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
   </div>
 </body>
 

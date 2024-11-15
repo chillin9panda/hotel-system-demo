@@ -1,22 +1,18 @@
 from django.contrib.auth.backends import BaseBackend
-from django.contrib.auth import get_user_model
-from django.core.exceptions import ObjectDoesNotExist
 from .models import Employee
 
 
-class EmployeeIDBackend(BaseBackend):
-    def authenticate(self, request, username=None, password=None, **Kwargs):
+class EmployeeAuthenticationBackend(BaseBackend):
+    def authenticate(self, request, employee_id=None, password=None):
         try:
-            user = Employee.objects.get(employee_id=username)
+            employee = Employee.objects.get(employee_id=employee_id)
+            if employee.password == password:
+                return employee
         except Employee.DoesNotExist:
-            user = None
+            return None
 
-        if not user:
-            try:
-                user = Employee.objects.get(phone_number=username)
-            except Employee.DoesNotExist:
-                user = None
-
-        if user and user.check_password(password):
-            return user
-        return None
+    def get_user(self, user_id):
+        try:
+            return Employee.objects.get(employee_id=user_id)
+        except Employee.DoesNotExist:
+            return None
