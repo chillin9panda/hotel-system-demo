@@ -38,9 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'login',
+    'manager',
     'booking',
-    'stock',
-    'cashier',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'login.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'management.urls'
@@ -88,6 +88,15 @@ DATABASES = {
     }
 }
 
+# Session Settings
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_NAME = 'sessionid'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 3600
+
+
+LOGIN_URL = '/login/login/'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -112,7 +121,7 @@ AUTH_USER_MODEL = 'login.Employee'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'login.authentication.EmployeeIDBackend',
+    'login.authentication.EmployeeAuthenticationBackend',
 ]
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

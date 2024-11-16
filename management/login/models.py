@@ -50,9 +50,10 @@ class Employee(AbstractBaseUser):
     ]
 
     ROLE_CHOICES = [
+        ('System Admin', 'System Admin'),
+        ('Manager', 'Manager'),
         ('Receptionist', 'Receptionist'),
         ('Stock Manager', 'Stock Manager'),
-        ('System Admin', 'System Admin'),
         ('Cashier', 'Cashier'),
         ('Security', 'Security'),
         ('Waiter', 'Waiter'),

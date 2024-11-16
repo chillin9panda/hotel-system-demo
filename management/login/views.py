@@ -24,6 +24,8 @@ def login_view(request):
                 return redirect('booking:home')
             elif user.role == 'System Admin':
                 return redirect('admin:index')
+            elif user.role == "Manager":
+                return redirect('manager:home')
             else:
                 return render(request, 'login/no_role.html')
         else:
