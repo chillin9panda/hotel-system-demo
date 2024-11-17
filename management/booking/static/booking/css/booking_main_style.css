@@ -1,0 +1,70 @@
+/* reset html */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Navigation bar */
+
+.nav-bar {
+	position: sticky;
+	top: 0;
+	background-color: #e0e0e0;
+	color: #000000;
+	padding: 10px 20px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	z-index: 1000;
+}
+
+.nav-bar .container {
+	flex: 1;
+	margin: auto;	
+	display: flex;
+	justify-content: space-between;
+	align-item: center;
+	width: 100%;
+}
+
+.nav-bar h1 {
+	font-size: 30px;
+}
+
+.nav-links {
+	list-style: none;
+	display:flex;
+	gap: 25px; 
+	margin: 0;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+}
+
+.nav-links a {
+	text-decoration: none;
+	color: #660000;
+	font-weight: bold;
+	font-size: 16px;
+	transition: color 0.3s;
+}
+
+.nav-links a:hover{
+	color: #663300;
+}
+
+/* Logout Button*/
+.logout-btn {
+	text-decoration: none;
+	color: #000000;
+	background-color: #ff4d4d;
+	padding: 8px 15px;
+	border-radius: 20px;
+	font-size: 16px;
+	font-weight: bold;
+	transition: backgrounf-color 0.3s, color 0.3s;
+}
+
+logout-btn:hover{
+	background-color: #e60000;
+	color; #ffffff;
+}

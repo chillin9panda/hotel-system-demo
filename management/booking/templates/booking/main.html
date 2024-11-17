@@ -1,13 +1,29 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
-	<title>Booking Main Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Booking Home</title>
+	<link rel="stylesheet" href="{% static 'booking/css/booking_main_style.css' %}" />
 </head>
 
 <body>
-	<h1>Welcome to the Booking Page</h1>
-	<p>This is the main page for booking.</p>
+	<header class="nav-bar">
+		<div class="container">
+			<h1>Booking</h1>
+			<nav>
+				<ul class="nav-links">
+					<li><a href=" #home">Home</a></li>
+					<li><a href="##book_room">Book Room</a></li>
+					<li><a href="#view_rooms">View Rooms</a></li>
+
+					<a href="#logout" class="logout-btn"> Logout</a>
+				</ul>
+			</nav>
+		</div>
+	</header>
 </body>
 
 </html>
