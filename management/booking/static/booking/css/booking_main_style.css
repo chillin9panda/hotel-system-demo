@@ -23,7 +23,6 @@
 	display: flex;
 	justify-content: space-between;
 	align-item: center;
-	width: 100%;
 }
 
 .nav-bar h1 {
@@ -48,7 +47,7 @@
 	transition: color 0.3s;
 }
 
-.nav-links a:hover{
+.nav-links a:hover {
 	color: #663300;
 }
 
@@ -64,7 +63,55 @@
 	transition: backgrounf-color 0.3s, color 0.3s;
 }
 
-logout-btn:hover{
+.logout-btn:hover {
 	background-color: #e60000;
 	color; #ffffff;
 }
+
+/* main */
+.main-body {
+	passing: 20px;
+	font-family: Arial, sans-serif;
+	color: #333;
+}
+
+.welcome {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.welcome h2{
+	margin: 0;
+	font-size: 20px;
+	color: #1e45c5;
+}
+
+/*Search*/
+
+.search input {
+	text-align:center;
+}
+
+.search input{
+	padding: 8px;
+	font-size: 14px;
+	width: 200px;
+	margin-right: 10px;
+}
+
+.search-btn{
+	padding: 8px, 15px;
+	background-color: #1e45c5;
+	color: white;
+	birder: none;
+	border-radius: 5px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.search-btn:hover {
+	background-color: #153a8f;
+}
+
+
+
