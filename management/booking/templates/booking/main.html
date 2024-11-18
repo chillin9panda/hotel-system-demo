@@ -15,34 +15,46 @@
 			<h1>Booking</h1>
 			<nav>
 				<ul class="nav-links">
-					<li><a href=" #home">Home</a></li>
-					<li><a href="##book_room">Book Room</a></li>
-					<li><a href="#view_rooms">View Rooms</a></li>
+					<li><a href="#" id="home-link">Home</a></li>
+					<li><a href="#" id="book-room-link">Book Room</a></li>
+					<li><a href="#" id="view-rooms-link">View Rooms</a></li>
 
-					<a href="#logout" class="logout-btn"> Logout</a>
+					<a href="#logout" class="logout-btn">Logout</a>
 				</ul>
 			</nav>
 		</div>
 	</header>
 
-	<div class="main-body">
-		<section class="welcome">
+<div id="content-wrapper">
+	<div class="main-body" >
+		<div class="welcome">
 			<h2>Welcome, Receptionist</h2>
 			<p>Today is <span id="current-date"></span></p>
-		</section>
+		</div>
+	</div>
 
-		<section class="status-overview">
+	<div class="info-section">
+		<div class="status-overview">
 			<h3>Room Status</h3>
-			<div class="status-overview">Total Rooms: 15 </div>
-			<div class="status-overview">Availale Rooms: 10 </div>
-			<div class="status-overview">Booked Rooms: 5 </div>
-		</section>
+				<div class="status-cards"><span>Total Rooms: 15 </span></div>
+				<div class="status-cards"><span>Availale Rooms: 10</span> </div>
+				<div class="status-cards"><span>Booked Rooms: 5</span> </div>
+		</div>
 
-		<section class="search">
+		<div class="search">
 			<h3>Search Booking</h3>
 			<input type="text" placeholder="Enter Room Number">
-			<button class="search-btn">Search</button>
-		</section>
+			<button class="search-btn">Search</button> <!--Replace with Search Icon-->
+		</div>
+	</div>		
+
+		
+	<div class="book-room" >
+		<h3>Book Room</h3>
+		 
+	</div>
+</div>
+<script src="{% static 'booking/js/bookin_main.js' %}"> </script>
 </body>
 
 </html>

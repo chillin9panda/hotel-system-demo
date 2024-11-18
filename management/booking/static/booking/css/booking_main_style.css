@@ -19,10 +19,9 @@
 
 .nav-bar .container {
 	flex: 1;
-	margin: auto;	
+	margin: auto;
 	display: flex;
 	justify-content: space-between;
-	align-item: center;
 }
 
 .nav-bar h1 {
@@ -31,8 +30,8 @@
 
 .nav-links {
 	list-style: none;
-	display:flex;
-	gap: 25px; 
+	display: flex;
+	gap: 25px;
 	margin: 0;
 	justify-content: center;
 	align-items: center;
@@ -65,12 +64,22 @@
 
 .logout-btn:hover {
 	background-color: #e60000;
-	color; #ffffff;
+	color: #ffffff;
+}
+
+/* hide content wrapper */
+#content {
+	display: none;
 }
 
 /* main */
 .main-body {
-	passing: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
 	font-family: Arial, sans-serif;
 	color: #333;
 }
@@ -80,32 +89,78 @@
 	margin-bottom: 20px;
 }
 
-.welcome h2{
+.welcome h2 {
 	margin: 0;
 	font-size: 20px;
 	color: #1e45c5;
 }
 
-/*Search*/
-
-.search input {
-	text-align:center;
+/*status*/
+.info-section {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
 }
 
-.search input{
+.status-overview {
+	flex: 1;
+	text-align: center;
+	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.status-cards {
+	display: block;
+	background-color: transparent;
+	border: 1pz solid #ccc;
+	border-radius: 5px;
+	padding: 10px 20px;
+	margin: 5px 0px;
+	font-size: 16px;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 70px;
+}
+
+.status-cards span {
+	display: block;
+	background-color: #f4f4f4;
+	padding: 5px 10px;
+	border-radius: 5px;
+	margin: 0 auto;
+	width: fit-content;
+}
+
+/*Search*/
+
+.search {
+	flex: 1;
+	text-align: center;
+	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	padding: 20px;
+	border-radius: 5px;
+
+}
+
+.search input {
+	text-align: center;
 	padding: 8px;
 	font-size: 14px;
 	width: 200px;
 	margin-right: 10px;
 }
 
-.search-btn{
+.search-btn {
 	padding: 8px, 15px;
 	background-color: #1e45c5;
 	color: white;
-	birder: none;
+	border: none;
 	border-radius: 5px;
-	font-size: 14px;
+	font-size: 20px;
 	cursor: pointer;
 }
 
@@ -113,5 +168,8 @@
 	background-color: #153a8f;
 }
 
-
-
+.search input[type="text"] {
+	height: 40px;
+	border-radius: 20px;
+	margin-top: 25px;
+}
