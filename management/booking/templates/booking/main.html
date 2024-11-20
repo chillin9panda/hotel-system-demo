@@ -25,36 +25,71 @@
 		</div>
 	</header>
 
-<div id="content-wrapper">
-	<div class="main-body" >
-		<div class="welcome">
-			<h2>Welcome, Receptionist</h2>
-			<p>Today is <span id="current-date"></span></p>
+	<div id="content-wrapper">
+		<!-- Home Section -->
+		<div id="home-section" class="main-body" style="display: block;">
+			<div class="welcome">
+				<h2>Welcome, Receptionist</h2>
+				<p>Today is <span id="current-date"></span></p>
+			</div>
 		</div>
-	</div>
 
-	<div class="info-section">
-		<div class="status-overview">
-			<h3>Room Status</h3>
+		<div id="info-section" class="info-section" style="display: block;">
+			<div class="status-overview">
+				<h3>Room Status</h3>
 				<div class="status-cards"><span>Total Rooms: 15 </span></div>
-				<div class="status-cards"><span>Availale Rooms: 10</span> </div>
+				<div class="status-cards"><span>Available Rooms: 10</span> </div>
 				<div class="status-cards"><span>Booked Rooms: 5</span> </div>
+			</div>
+
+			<div class="search">
+				<h3>Search Booking</h3>
+				<input type="text" placeholder="Enter Room Number">
+				<button class="search-btn">Search</button>
+			</div>
 		</div>
 
-		<div class="search">
-			<h3>Search Booking</h3>
-			<input type="text" placeholder="Enter Room Number">
-			<button class="search-btn">Search</button> <!--Replace with Search Icon-->
+		<div id="book-room-section" class="book-room" style="display: none;">
+			<h3>Book a Room</h3>
+			<!-- Content for Book Room Section -->
+			<form id="book-room-form">
+				<!--Guest Name-->
+				<div class="form-group">
+					<label for="guest-name">Guest Name: </label>
+					<input type="text" id="guest_name" placeholder="Enter Guest Name" required />
+				</div>
+				<!--Contact Info--> 
+				<div class="form-group">
+					<label for="contact-number">phone Number: </label>
+					<input type="text" id="contact-number" placeholder="Enter Phone Number" required />
+				</div> 
+				<!--Check-In Date-->
+				<div class="form-group">
+					<label for="check-in-date">Check-In Date: </label>
+					<input type="date" id="check-in-date" required />
+				</div> 
+				<!--Check-Out Date-->
+				<div class="form-group">
+					<label for="check-out-date">Check-Out Date: </label>
+					<input type="date" id="check-out-date" required />
+				</div> 
+				<!--Payment Method-->
+				<div class="form-group">
+					<label for="payment-method">Payment Method: </label>
+					<select>
+						<option value="" disabled selected>Select Payment Method</option> 
+						<option value="cash">Cash</option>
+						<option value="card">Card</option>
+						<option value="mobile-banking">Mobile Banking</option>
+					</select>
+				</div> 
+				<!--Submit Button-->
+				<button type="submit" class="submit-btn">Book Room</Button>
+			</form>
 		</div>
-	</div>		
-
-		
-	<div class="book-room" >
-		<h3>Book Room</h3>
-		 
 	</div>
-</div>
-<script src="{% static 'booking/js/bookin_main.js' %}"> </script>
+
+	<script src="{% static 'booking/js/booking_main.js' %}"> </script>
 </body>
 
 </html>

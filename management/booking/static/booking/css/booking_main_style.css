@@ -95,24 +95,34 @@
 	color: #1e45c5;
 }
 
-/*status*/
-.info-section {
+/*home*/
+#info-section {
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
 	gap: 20px;
+	padding: 20px;
 }
 
+/*Status and search*/
+.status-overview h3,
+.search h3 {
+	margin-bottom: 10px;
+}
+
+/*status*/
 .status-overview {
-	flex: 1;
+	flex-direction: column;
 	text-align: center;
+	gap: 40px;
 	background-color: #f9f9f9;
 	border: 1px solid #ddd;
-	padding: 10px;
+	padding: 15px;
 	border-radius: 5px;
+	margin-bottom: 30px;
 }
 
 .status-cards {
-	display: block;
+	display: inline-block;
 	background-color: transparent;
 	border: 1pz solid #ccc;
 	border-radius: 5px;
@@ -120,9 +130,6 @@
 	margin: 5px 0px;
 	font-size: 16px;
 	text-align: center;
-	position: relative;
-	overflow: hidden;
-	margin-bottom: 70px;
 }
 
 .status-cards span {
@@ -137,12 +144,13 @@
 /*Search*/
 
 .search {
-	flex: 1;
 	text-align: center;
 	background-color: #f9f9f9;
 	border: 1px solid #ddd;
-	padding: 20px;
+	padding: 15px;
 	border-radius: 5px;
+	padding-bottom: 180px;
+	margin-top: 30px;
 
 }
 
@@ -172,4 +180,37 @@
 	height: 40px;
 	border-radius: 20px;
 	margin-top: 25px;
+}
+
+/*Book room*/
+.form-group {
+	margin-bottom: 15px;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+	width: 100%;
+	padding: 8px;
+	font-size: 16px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.submit-btn {
+	background-color: #4caf50;
+	color: white;
+	color: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 20;
+}
+
+.submit-btn:hover {
+	background-color: #45a049;
 }

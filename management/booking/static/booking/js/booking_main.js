@@ -1,63 +1,38 @@
-// Select the elements
-const homeLink = document.getElementById('home-link');
-const roomStatusLink = document.getElementById('room-status-link');
-const searchBookingLink = document.getElementById('search-booking-link');
-const bookRoomLink = document.getElementById('book-room-link'); // Book Room link
-const contentWrapper = document.getElementById('content-wrapper');
-const currentDate = document.getElementById('current-date');
-
-// Select sections within the content wrapper
-const roomStatusSection = document.querySelector('.status-overview');
-const searchSection = document.querySelector('.search');
-const bookRoomSection = document.querySelector('.book-room'); // Book Room section
-
-// Function to show the content wrapper and set the current date
-function showContentWrapper() {
-    contentWrapper.style.display = 'block';
-    const date = new Date().toLocaleDateString();
-    currentDate.textContent = date;
+// Function to show the Home section
+function showHome() {
+    hideAllSections();  // Hide all sections first
+    document.getElementById('home-section').style.display = 'block';  // Show the Home section
+    document.getElementById('info-section').style.display = 'block';  // Show the Info Section (Room Status & Search)
 }
 
-// Function to hide the content wrapper
-function hideContentWrapper() {
-    contentWrapper.style.display = 'none';
-}
-
-// Show specific sections
-function showRoomStatus() {
-    roomStatusSection.style.display = 'block';
-    searchSection.style.display = 'block';
-    bookRoomSection.style.display = 'none'; // Hide Book Room
-}
-
-function showSearchBooking() {
-    roomStatusSection.style.display = 'none';
-    searchSection.style.display = 'block';
-    bookRoomSection.style.display = 'none'; // Hide Book Room
-}
-
+// Function to show the Book Room section
 function showBookRoom() {
-    roomStatusSection.style.display = 'none';
-    searchSection.style.display = 'none';
-    bookRoomSection.style.display = 'block'; // Show Book Room
+    hideAllSections();  // Hide all sections first
+    document.getElementById('book-room-section').style.display = 'block';  // Show the Book Room section
 }
 
-// Add event listeners to the navigation links
-homeLink.addEventListener('click', function() {
-    hideContentWrapper();
+// Function to hide all sections
+function hideAllSections() {
+    document.getElementById('home-section').style.display = 'none';  // Hide Home section
+    document.getElementById('info-section').style.display = 'none';  // Hide Info section
+    document.getElementById('book-room-section').style.display = 'none';  // Hide Book Room section
+}
+
+// Event Listeners for navigation links
+document.getElementById('home-link').addEventListener('click', function (event) {
+    event.preventDefault();  // Prevent default anchor click behavior
+    showHome();  // Show Home Section
 });
 
-roomStatusLink.addEventListener('click', function() {
-    showContentWrapper();
-    showRoomStatus();
+document.getElementById('book-room-link').addEventListener('click', function (event) {
+    event.preventDefault();  // Prevent default anchor click behavior
+    showBookRoom();  // Show Book Room Section
 });
 
-searchBookingLink.addEventListener('click', function() {
-    showContentWrapper();
-    showSearchBooking();
+document.getElementById('view-rooms-link').addEventListener('click', function (event) {
+    event.preventDefault();  // Prevent default anchor click behavior
+    showHome();  // Show Home Section
 });
 
-bookRoomLink.addEventListener('click', function() {
-    showContentWrapper();
-    showBookRoom();
-});
+// Set the default section to show (Home) when the page loads
+window.onload = showHome;
