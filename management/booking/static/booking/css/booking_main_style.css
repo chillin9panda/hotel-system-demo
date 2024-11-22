@@ -194,14 +194,17 @@
 
 .form-group input,
 .form-group select {
-	width: 100%;
+	width: 50%;
 	padding: 8px;
 	font-size: 16px;
 	border: 1px solid #ddd;
 	border-radius: 4px;
 }
 
-.submit-btn {
+.book-room-btn {
+	margin-left: 25%;
+	height: 50px;
+	width: 100px;
 	background-color: #4caf50;
 	color: white;
 	color: 10px 20px;
@@ -211,6 +214,6 @@
 	font-size: 20;
 }
 
-.submit-btn:hover {
+.book-room-btn:hover {
 	background-color: #45a049;
 }

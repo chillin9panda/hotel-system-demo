@@ -60,7 +60,7 @@
 				</div>
 				<!--Contact Info--> 
 				<div class="form-group">
-					<label for="contact-number">phone Number: </label>
+					<label for="contact-number">Phone Number: </label>
 					<input type="text" id="contact-number" placeholder="Enter Phone Number" required />
 				</div> 
 				<!--Check-In Date-->
@@ -72,19 +72,31 @@
 				<div class="form-group">
 					<label for="check-out-date">Check-Out Date: </label>
 					<input type="date" id="check-out-date" required />
-				</div> 
+				</div>
 				<!--Payment Method-->
 				<div class="form-group">
 					<label for="payment-method">Payment Method: </label>
-					<select>
+					<select id="payment-method" name="payment_method" required>
 						<option value="" disabled selected>Select Payment Method</option> 
 						<option value="cash">Cash</option>
 						<option value="card">Card</option>
 						<option value="mobile-banking">Mobile Banking</option>
 					</select>
 				</div> 
+		
+				<!--Dynamic Mobile Banking Field-->
+				<div id="mobile-banking-fields" style="display: none;">
+					<div class="form-group">
+						<label for="bank-name">Bank Name: </label>
+						<input type="text" id="bank-name" placeholder="Enter Bank Name"/>
+					</div> 
+					<div class="form-group">
+						<label for="transaction-id">Transaction ID: </label>
+						<input type="text" id="transaction-id" placeholder="Enter Transaction ID"/>
+					</div> 
+				</div>
 				<!--Submit Button-->
-				<button type="submit" class="submit-btn">Book Room</Button>
+				<button type="submit" class="book-room-btn">Book Room</Button>
 			</form>
 		</div>
 	</div>
