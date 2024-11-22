@@ -12,7 +12,7 @@ def is_receptionist(user):
 
 @user_passes_test(is_receptionist, login_url='/login/')
 def booking_main(request):
-    return render(request, 'booking/main.html')
+    return render(request, 'booking/booking_main.html')
 
 
 def book_room(request):
