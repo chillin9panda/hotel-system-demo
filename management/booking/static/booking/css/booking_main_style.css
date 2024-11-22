@@ -163,11 +163,13 @@
 }
 
 .search-btn {
+	height: 30px;
+	width: 70px;
 	padding: 8px, 15px;
 	background-color: #1e45c5;
 	color: white;
 	border: none;
-	border-radius: 5px;
+	border-radius: 8px;
 	font-size: 20px;
 	cursor: pointer;
 }
@@ -216,4 +218,41 @@
 
 .book-room-btn:hover {
 	background-color: #45a049;
+}
+
+/*view rooms*/
+.room-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px
+}
+
+.room {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #f9f9f9;
+}
+
+.room-status {
+	font-weight: bold;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+.room-status.available {
+	color: #fff;
+	background-color: #28a745;
+}
+
+.room-status.occupied {
+	color: #fff;
+	background-color: #ffc107;
+}
+
+.room-status.available {
+	color: #fff;
+	background-color: #dc3545;
 }

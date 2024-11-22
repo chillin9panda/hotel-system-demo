@@ -1,14 +1,20 @@
-// Function to show the Home section
+//show the Home section
 function showHome() {
-    hideAllSections();  // Hide all sections first
-    document.getElementById('home-section').style.display = 'block';  // Show the Home section
-    document.getElementById('info-section').style.display = 'block';  // Show the Info Section (Room Status & Search)
+    hideAllSections(); 
+    document.getElementById('home-section').style.display = 'block';
+    document.getElementById('info-section').style.display = 'block';
 }
 
-// Function to show the Book Room section
+// show the Book Room section
 function showBookRoom() {
-    hideAllSections();  // Hide all sections first
-    document.getElementById('book-room-section').style.display = 'block';  // Show the Book Room section
+    hideAllSections(); 
+    document.getElementById('book-room-section').style.display = 'block';
+}
+
+//show view rooms section
+function showViewRooms() {
+	hideAllSections();
+	document.getElementById('view-rooms-section').style.display = 'block';
 }
 
 // Function to hide all sections
@@ -16,25 +22,26 @@ function hideAllSections() {
     document.getElementById('home-section').style.display = 'none';  // Hide Home section
     document.getElementById('info-section').style.display = 'none';  // Hide Info section
     document.getElementById('book-room-section').style.display = 'none';  // Hide Book Room section
+    document.getElementById('view-rooms-section').style.display = 'none'; // Hide View Rooms section
 }
 
 // Event Listeners for navigation links
 document.getElementById('home-link').addEventListener('click', function (event) {
-    event.preventDefault();  // Prevent default anchor click behavior
-    showHome();  // Show Home Section
+    event.preventDefault();
+    showHome();
 });
 
 document.getElementById('book-room-link').addEventListener('click', function (event) {
-    event.preventDefault();  // Prevent default anchor click behavior
-    showBookRoom();  // Show Book Room Section
+    event.preventDefault();
+    showBookRoom();
 });
 
 document.getElementById('view-rooms-link').addEventListener('click', function (event) {
-    event.preventDefault();  // Prevent default anchor click behavior
-    showHome();  // Show Home Section
+    event.preventDefault();
+    showViewRooms();
 });
 
-//Dynamic section for mabile banking payment method
+//Dynamic section for mobile banking payment method
 document.getElementById("payment-method").addEventListener("change", function() {
 	const paymentMethod = this.value;
 	const mobileBankingFields = document.getElementById("mobile-banking-fields");
@@ -46,7 +53,7 @@ document.getElementById("payment-method").addEventListener("change", function() 
 	}
 
 	document.getElementById("bank-name").value = ""; 
-	document.getElementById("ttransaction-id").value = "";
+	document.getElementById("transaction-id").value = "";
 });
 
 // Set the default section to show (Home) when the page loads

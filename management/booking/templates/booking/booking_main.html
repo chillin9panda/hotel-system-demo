@@ -18,7 +18,7 @@
 					<li><a href="#" id="home-link">Home</a></li>
 					<li><a href="#" id="book-room-link">Book Room</a></li>
 					<li><a href="#" id="view-rooms-link">View Rooms</a></li>
-
+					<!--Add notitfication icon-->
 					<a href="#logout" class="logout-btn">Logout</a>
 				</ul>
 			</nav>
@@ -73,6 +73,18 @@
 					<label for="check-out-date">Check-Out Date: </label>
 					<input type="date" id="check-out-date" required />
 				</div>
+				<!--Room Number-->
+				<div class="form-group">
+					<label for="room-number">Room Number: </label>
+					<select id = "room-number" name="room_number" required>
+						<option value="" disable selected>Select Room Number</option>
+						<option value="1">1</option>	
+						<option value="2">2</option>
+					</select>
+				</div>
+
+
+				
 				<!--Payment Method-->
 				<div class="form-group">
 					<label for="payment-method">Payment Method: </label>
@@ -101,7 +113,22 @@
 		</div>
 
 		<!--View Rooms-->
-		<div>
+		<div id="view-rooms-section" class="view-rooms" style="display: none;">
+			<h3>Rooms Overview</h3>
+			<div class="room-list">
+				<div class="room">
+					<span class="room-number">Room 101</span>
+					<span class="room-status" available>Available</span>
+				</div> 
+				<div class="room">
+					<span class="room-number">Room 101</span>
+					<span class="room-status" occupied>Occupied</span>
+				</div> 
+				<div class="room">
+					<span class="room-number">Room 101</span>
+					<span class="room-status" unavailable>Unavailable</span>
+				</div> 
+			</div>
 		</div>
 	</div>
 
