@@ -19,7 +19,7 @@
 					<li><a href="#" id="book-room-link">Book Room</a></li>
 					<li><a href="#" id="view-rooms-link">View Rooms</a></li>
 					<!--Add notitfication icon-->
-					<a href="#logout" class="logout-btn">Logout</a>
+					<a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
 				</ul>
 			</nav>
 		</div>
@@ -29,7 +29,7 @@
 		<!-- Home Section -->
 		<div id="home-section" class="main-body" style="display: block;">
 			<div class="welcome">
-				<h2>Welcome, Receptionist</h2>
+					<h2>Welcome, {{ user_name }}</h2>
 				<p>Today is <span id="current-date"></span></p>
 			</div>
 		</div>

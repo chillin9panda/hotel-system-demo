@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9%64+-4%qz(l+@176k^zqvuf66xxe#6t7zcp=(2kxtq1xtl29k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.8.171']
+ALLOWED_HOSTS = ['192.168.8.171', '10.0.0.102']
 
 
 # Application definition
@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'login.context_processor.user_info',
             ],
         },
     },
@@ -97,6 +98,7 @@ SESSION_COOKIE_AGE = 3600
 
 LOGIN_URL = '/login/login/'
 
+LOGOUT_REDIRECT_URL = '/login/login/'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

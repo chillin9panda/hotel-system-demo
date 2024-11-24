@@ -1,8 +1,6 @@
 from django.contrib import admin
-from django.contrib.auth.views import LoginView
 from django.urls import path, include
 from django.shortcuts import redirect
-from login.custom_admin import custom_admin_site
 
 urlpatterns = [
     # path('admin/', custom_admin_site.urls),
