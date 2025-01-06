@@ -53,27 +53,6 @@ document.getElementById('view-rooms-link').addEventListener('click', function (e
     showViewRooms();
 });
 
-document.getElementById('book-room-form').addEventListener('submit', function(event){
-    event.preventDefault();
-
-    const formData = new FormData(this); //collect
-
-    fetch("{% url 'book_room' %}", {
-	method: 'POST',
-	body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-	    if(data.success){
-		alert('Room Booked Successfully');
-	    } else {
-		alert('Error');
-	    }
-	})
-    .catch(error => {
-	    console.error('Error: ', error);
-	});
-});
 
 //Dynamic section for mobile banking payment method
 document.getElementById("payment-method").addEventListener("change", function() {

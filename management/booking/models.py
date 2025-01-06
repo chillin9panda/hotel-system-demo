@@ -49,13 +49,6 @@ class Booking(models.Model):
         ('Pending', 'Pending'),
         ('Cancelled', 'Cancelled'),
     ]
-
-    PAYMENT_METHOD_CHOICE = [
-        ('Cash', 'Cash'),
-        ('Card', 'Card'),
-        ('Mobile Banking', 'Mobile Banking'),
-    ]
-
     booking_id = models.AutoField(primary_key=True)
     room = models.ForeignKey(
         Room, on_delete=models.CASCADE, related_name='bookings')
@@ -66,10 +59,6 @@ class Booking(models.Model):
     booking_date = models.DateTimeField(default=datetime.datetime.now)
     status = models.CharField(
         max_length=10, choices=BOOKING_STATUS_CHOICES, default='Pending')
-    payment_method = models.CharField(
-        max_length=20, choices=PAYMENT_METHOD_CHOICE, null=True, blank=True)
-    bank_name = models.CharField(max_length=100, null=True, blank=True)
-    transaction_id = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return f"Booking {self.booking_id}: for {self.guest.first_name} {self.guest.last_name}: in Room {self.room.room_number}"

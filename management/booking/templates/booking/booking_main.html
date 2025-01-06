@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Booking Home</title>
+	<title>Reception</title>
 	<link rel="stylesheet" href="{% static 'booking/css/booking_main_style.css' %}" />
 </head>
 
@@ -52,26 +52,32 @@
 		<div id="book-room-section" class="book-room" style="display: none;">
 			<h3>Book a Room</h3>
 			<!-- Content for Book Room Section -->
-			<form id="book-room-form">
-				<!--Guest Name-->
+      <form id="book-room-form" action="{% url 'booking:book_room' %}" method="POST">
+        {% csrf_token %}
+				<!--Guest first Name-->
 				<div class="form-group">
 					<label for="guest-name">Guest Name: </label>
-					<input type="text" id="guest_name" placeholder="Enter Guest Name" required />
+					<input type="text" id="guest_first_name" name="first_name" placeholder="Enter Guest First Name" required />
+				</div>
+				<!--Guest last Name-->
+				<div class="form-group">
+					<label for="guest-name">Guest Name: </label>
+					<input type="text" id="guest_last_name" name="last_name" placeholder="Enter Guest Last Name" required />
 				</div>
 				<!--Contact Info--> 
 				<div class="form-group">
 					<label for="contact-number">Phone Number: </label>
-					<input type="text" id="contact-number" placeholder="Enter Phone Number" required />
+					<input type="text" id="contact-number" name="phone_number" placeholder="Enter Phone Number" required />
 				</div> 
 				<!--Check-In Date-->
 				<div class="form-group">
 					<label for="check-in-date">Check-In Date: </label>
-					<input type="date" id="check-in-date" required />
+					<input type="date" name="check_in_date" id="check-in-date" required />
 				</div> 
 				<!--Check-Out Date-->
 				<div class="form-group">
 					<label for="check-out-date">Check-Out Date: </label>
-					<input type="date" id="check-out-date" required />
+					<input type="date" name="check_out_date" id="check-out-date" required />
 				</div>
 				<!--Room Number-->
 				<div class="form-group">
@@ -88,7 +94,7 @@
 				<!--Payment Method-->
 				<div class="form-group">
 					<label for="payment-method">Payment Method: </label>
-					<select id="payment-method" name="payment_method" required>
+					<select id="payment-method" name="payment_method" >
 						<option value="" disabled selected>Select Payment Method</option> 
 						<option value="cash">Cash</option>
 						<option value="card">Card</option>

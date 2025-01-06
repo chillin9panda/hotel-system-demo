@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,8 @@ SECRET_KEY = 'django-insecure-9%64+-4%qz(l+@176k^zqvuf66xxe#6t7zcp=(2kxtq1xtl29k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.8.171', '10.0.0.102', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.8.171', '192.168.8.135',
+                 '10.0.0.100', '10.0.0.102', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'login',
     'manager',
     'booking',
+    'payments',
 ]
 
 MIDDLEWARE = [
@@ -55,10 +58,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'management.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'login/templates'],
+        'DIRS': [os.path.join(BASE_DIR / 'login/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
