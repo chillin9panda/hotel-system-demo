@@ -26,71 +26,79 @@
 	</header>
 
 	<div id="content-wrapper">
-		<!-- Home Section -->
-		<div id="home-section" class="main-body" style="display: block;">
-			<div class="welcome">
-					<h2>Welcome, {{ user_name }}</h2>
-				<p>Today is <span id="current-date"></span></p>
-			</div>
-		</div>
+  <!-- Home Section -->
+  <div id="home-section" class="main-body" style="display: block;">
+    <div class="welcome">
+        <h2>Welcome, {{ user_name }}</h2>
+      <p>Today is <span id="current-date"></span></p>
+    </div>
+  </div>
 
-		<div id="info-section" class="info-section" style="display: block;">
-			<div class="status-overview">
-				<h3>Room Status</h3>
-				<div class="status-cards"><span>Total Rooms: 15 </span></div>
-				<div class="status-cards"><span>Available Rooms: 10</span> </div>
-				<div class="status-cards"><span>Booked Rooms: 5</span> </div>
-			</div>
+  <div id="info-section" class="info-section" style="display: block;">
+    <div class="status-overview">
+      <h3>Room Status</h3>
+      <div class="status-cards"><span>Total Rooms: 15 </span></div>
+      <div class="status-cards"><span>Available Rooms: 10</span> </div>
+      <div class="status-cards"><span>Booked Rooms: 5</span> </div>
+    </div>
 
-			<div class="search">
-				<h3>Search Booking</h3>
-				<input type="text" placeholder="Enter Room Number">
-				<button class="search-btn">Search</button>
-			</div>
-		</div>
+    <div class="search">
+      <h3>Search Booking</h3>
+      <input type="text" placeholder="Enter Room Number">
+      <button class="search-btn">Search</button>
+    </div>
+  </div>
 
-		<div id="book-room-section" class="book-room" style="display: none;">
-			<h3>Book a Room</h3>
-			<!-- Content for Book Room Section -->
-      <form id="book-room-form" action="{% url 'booking:book_room' %}" method="POST">
-        {% csrf_token %}
-				<!--Guest first Name-->
-				<div class="form-group">
-					<label for="guest-name">Guest Name: </label>
-					<input type="text" id="guest_first_name" name="first_name" placeholder="Enter Guest First Name" required />
-				</div>
-				<!--Guest last Name-->
-				<div class="form-group">
-					<label for="guest-name">Guest Name: </label>
-					<input type="text" id="guest_last_name" name="last_name" placeholder="Enter Guest Last Name" required />
-				</div>
-				<!--Contact Info--> 
-				<div class="form-group">
-					<label for="contact-number">Phone Number: </label>
-					<input type="text" id="contact-number" name="phone_number" placeholder="Enter Phone Number" required />
-				</div> 
-				<!--Check-In Date-->
-				<div class="form-group">
-					<label for="check-in-date">Check-In Date: </label>
-					<input type="date" name="check_in_date" id="check-in-date" required />
-				</div> 
-				<!--Check-Out Date-->
-				<div class="form-group">
-					<label for="check-out-date">Check-Out Date: </label>
-					<input type="date" name="check_out_date" id="check-out-date" required />
-				</div>
-				<!--Room Number-->
-				<div class="form-group">
-					<label for="room-number">Room Number: </label>
-					<select id = "room-number" name="room_number" required>
-						<option value="" disable selected>Select Room Number</option>
-						<option value="1">1</option>	
-						<option value="2">2</option>
-					</select>
-				</div>
+  <div id="book-room-section" class="book-room" style="display: none;">
+    <h3>Book a Room</h3>
+    <!-- Content for Book Room Section -->
+    <form id="book-room-form" action="{% url 'booking:book_room' %}" method="POST">
+      {% csrf_token %}
+      <!--Guest Name-->
+      <div class="form-group">
+        <label for="guest-name">Guest Name: </label>
+        <input type="text" id="guest_first_name" name="first_name" placeholder="Enter Guest First Name" required />
+      </div>
+      <div class="form-group">
+        <label for="guest-name">Guest Name: </label>
+        <input type="text" id="guest_last_name" name="last_name" placeholder="Enter Guest Last Name" required />
+      </div>
+      <!--Contact Info--> 
+      <div class="form-group">
+        <label for="contact-number">Phone Number: </label>
+        <input type="text" id="contact-number" name="phone_number" placeholder="Enter Phone Number" required />
+      </div> 
+      <div class="form-group">
+        <label for="email">Email: </label>
+        <input type="text" id="email" name="email" placeholder="Enter Email" />
+      </div> 
+      <!--Check-In Date-->
+      <div class="form-group">
+        <label for="check-in-date">Check-In Date: </label>
+        <input type="date" name="check_in_date" id="check-in-date" required />
+      </div> 
+      <!--Check-Out Date-->
+      <div class="form-group">
+        <label for="check-out-date">Check-Out Date: </label>
+        <input type="date" name="check_out_date" id="check-out-date" required />
+      </div>
+      <!--Room Number-->
+      <div class="form-group">
+        <label for="room-number">Room Number: </label>
+        <select id = "room-number" name="room_number" required>
+          <option value="" disable selected>Select Room Number</option>
+          <option value="1">1</option>	
+          <option value="2">2</option>
+        </select>
+      </div>
+    
+      <!--Submit Button-->
+      <button type="submit" class="book-room-btn">Book Room</Button>
+    </form>
+  </div>
 
-
-				
+  <!--Payment-->
+  <div id="payment-section" class="payment" style="display: none;">
 				<!--Payment Method-->
 				<div class="form-group">
 					<label for="payment-method">Payment Method: </label>
@@ -113,29 +121,27 @@
 						<input type="text" id="transaction-id" placeholder="Enter Transaction ID"/>
 					</div> 
 				</div>
-				<!--Submit Button-->
-				<button type="submit" class="book-room-btn">Book Room</Button>
-			</form>
-		</div>
 
-		<!--View Rooms-->
-		<div id="view-rooms-section" class="view-rooms" style="display: none;">
-			<h3>Rooms Overview</h3>
-			<div class="room-list">
-				<div class="room">
-					<span class="room-number">Room 101</span>
-					<span class="room-status" available>Available</span>
-				</div> 
-				<div class="room">
-					<span class="room-number">Room 101</span>
-					<span class="room-status" occupied>Occupied</span>
-				</div> 
-				<div class="room">
-					<span class="room-number">Room 101</span>
-					<span class="room-status" unavailable>Unavailable</span>
-				</div> 
-			</div>
-		</div>
+  </div>
+
+  <!--View Rooms-->
+  <div id="view-rooms-section" class="view-rooms" style="display: none;">
+    <h3>Rooms Overview</h3>
+    <div class="room-list">
+      <div class="room">
+        <span class="room-number">Room 101</span>
+        <span class="room-status" available>Available</span>
+      </div> 
+      <div class="room">
+        <span class="room-number">Room 101</span>
+        <span class="room-status" occupied>Occupied</span>
+      </div> 
+      <div class="room">
+        <span class="room-number">Room 101</span>
+        <span class="room-status" unavailable>Unavailable</span>
+      </div> 
+    </div>
+  </div>
 	</div>
 
 	<script src="{% static 'booking/js/booking_main.js' %}"> </script>

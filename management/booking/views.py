@@ -15,7 +15,8 @@ def book_room(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        phone_number = request.POST.get('contact_number')
+        phone_number = request.POST.get('phone_number')
+        email = request.POST.get('email')
         check_in_date = request.POST.get('check_in_date')
         check_out_date = request.POST.get('check_out_date')
         room_number = request.POST.get('room_number')
@@ -23,10 +24,13 @@ def book_room(request):
         # Get Room and Guest Objects
         try:
             room = Room.objects.get(room_number=room_number)
-            guest, created = Guest.objects.get(
+
+            guest, created = Guest.objects.get_or_create(
                 phone_number=phone_number,
-                first_name=first_name,
-                last_name=last_name,
+                defaults={'first_name': first_name,
+                          'last_name': last_name,
+                          'email': email,
+                          }
             )
 
             # Booking instance
