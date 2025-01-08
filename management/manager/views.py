@@ -31,7 +31,5 @@ def add_room(request):
     return render(request, 'manager/addRooms.html')
 
 
-"""
 def manager_home(request):
     return render(request, 'manager/addRooms.html')
-"""
