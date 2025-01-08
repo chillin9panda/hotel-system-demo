@@ -22,4 +22,4 @@ class Payments(models.Model):
     isPaid = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Paymen {self.payment_id} for Booking {self.booking_id}"
+        return f"Payment {self.payment_id} for Booking {self.booking_id}"
