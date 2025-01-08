@@ -3,9 +3,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import ValidationError
 from .models import Room, Guest, Booking
-from .forms import BookingForm
-from django.http import JsonResponse
-from django.urls import reverse
 from django.http import HttpResponse
 
 # Create your views here.
@@ -25,6 +22,10 @@ def book_room(request):
         try:
             room = Room.objects.get(room_number=room_number)
 
+            if room.room_status != 'Available':
+                messages.error(request, "The selected room is not Available!")
+                return redirect('booking_main')
+
             guest, created = Guest.objects.get_or_create(
                 phone_number=phone_number,
                 defaults={'first_name': first_name,
@@ -33,13 +34,16 @@ def book_room(request):
                           }
             )
 
-            # Booking instance
+            # Create Booking
             booking = Booking(
                 room=room,
                 guest=guest,
                 check_in_date=check_in_date,
                 check_out_date=check_out_date,
             )
+
+            room.room_status = 'Booked'
+            room.save()
 
         # Validate and sabe booking
             try:
@@ -53,9 +57,6 @@ def book_room(request):
         except Room.DoesNotExist:
             messages.error(request, "Room not Found!")
             return redirect('booking_main')
-    else:
-        available_rooms = Room.objects.filter(room_status='Available')
-        return render(request, 'booking_main.html', {'rooms': available_rooms})
 
     return HttpResponse("Form Submitted")
 
@@ -66,4 +67,7 @@ def is_receptionist(user):
 
 @user_passes_test(is_receptionist, login_url='/login/')
 def booking_main(request):
-    return render(request, 'booking/booking_main.html')
+    available_rooms = Room.objects.filter(room_status='Available')
+    return render(request,
+                  'booking/booking_main.html',
+                  {'rooms': available_rooms})

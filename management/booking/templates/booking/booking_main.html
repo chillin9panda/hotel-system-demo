@@ -86,15 +86,25 @@
       <div class="form-group">
         <label for="room-number">Room Number: </label>
         <select id = "room-number" name="room_number" required>
-          <option value="" disable selected>Select Room Number</option>
-          <option value="1">1</option>	
-          <option value="2">2</option>
+          <option value="" disable selected>Select Room</option>
+          {% for room in rooms %}
+            <option value="{{ room.room_number }}">{{ room.room_number }}</option>	
+          {% endfor %}
         </select>
       </div>
-    
+
       <!--Submit Button-->
       <button type="submit" class="book-room-btn">Book Room</Button>
     </form>
+
+    <!--feedback message-->
+    <div>
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert: {{ message.tags }}"> {{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    </div>
   </div>
 
   <!--Payment-->
@@ -144,7 +154,7 @@
   </div>
 	</div>
 
-	<script src="{% static 'booking/js/booking_main.js' %}"> </script>
+  <script src="{% static 'booking/js/booking_main.js' %}"></script>
 </body>
 
 </html>

@@ -71,3 +71,4 @@ document.getElementById("payment-method").addEventListener("change", function() 
 
 // Set the default section to show (Home) when the page loads
 window.onload = showHome;
+
