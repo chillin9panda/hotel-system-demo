@@ -67,7 +67,20 @@ def is_receptionist(user):
 
 @user_passes_test(is_receptionist, login_url='/login/')
 def booking_main(request):
+    rooms = Room.objects.all()
     available_rooms = Room.objects.filter(room_status='Available')
+    booked_rooms = Room.objects.filter(room_status='Booked')
+
+    total_rooms = rooms.count()
+    available_count = available_rooms.count()
+    booked_count = booked_rooms.count()
+
     return render(request,
                   'booking/booking_main.html',
-                  {'rooms': available_rooms})
+                  {
+                      'total_rooms': total_rooms,
+                      'available_count': available_count,
+                      'booked_count': booked_count,
+                      'all_rooms': rooms,
+                      'rooms': available_rooms,
+                  })

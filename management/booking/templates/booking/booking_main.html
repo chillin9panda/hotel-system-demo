@@ -37,9 +37,9 @@
   <div id="info-section" class="info-section" style="display: block;">
     <div class="status-overview">
       <h3>Room Status</h3>
-      <div class="status-cards"><span>Total Rooms: 15 </span></div>
-      <div class="status-cards"><span>Available Rooms: 10</span> </div>
-      <div class="status-cards"><span>Booked Rooms: 5</span> </div>
+      <div class="status-cards"><span>Total Rooms: {{ total_rooms }} </span></div>
+      <div class="status-cards"><span>Available Rooms: {{ available_count }}</span> </div>
+      <div class="status-cards"><span>Booked Rooms: {{ booked_count }} </span> </div>
     </div>
 
     <div class="search">
@@ -57,16 +57,16 @@
       <!--Guest Name-->
       <div class="form-group">
         <label for="guest-name">Guest Name: </label>
-        <input type="text" id="guest_first_name" name="first_name" placeholder="Enter Guest First Name" required />
+        <input type="text" id="guest_first_name" name="first_name" placeholder="First Name" required />
       </div>
       <div class="form-group">
         <label for="guest-name">Guest Name: </label>
-        <input type="text" id="guest_last_name" name="last_name" placeholder="Enter Guest Last Name" required />
+        <input type="text" id="guest_last_name" name="last_name" placeholder="Last Name" required />
       </div>
       <!--Contact Info--> 
       <div class="form-group">
         <label for="contact-number">Phone Number: </label>
-        <input type="text" id="contact-number" name="phone_number" placeholder="Enter Phone Number" required />
+        <input type="text" id="contact-number" name="phone_number" placeholder="Phone Number" required />
       </div> 
       <div class="form-group">
         <label for="email">Email: </label>
@@ -138,18 +138,14 @@
   <div id="view-rooms-section" class="view-rooms" style="display: none;">
     <h3>Rooms Overview</h3>
     <div class="room-list">
-      <div class="room">
-        <span class="room-number">Room 101</span>
-        <span class="room-status" available>Available</span>
-      </div> 
-      <div class="room">
-        <span class="room-number">Room 101</span>
-        <span class="room-status" occupied>Occupied</span>
-      </div> 
-      <div class="room">
-        <span class="room-number">Room 101</span>
-        <span class="room-status" unavailable>Unavailable</span>
-      </div> 
+      {% for room in all_rooms %}
+        <div class="room">
+          <span class="room-number">Number: {{ room.room_number }}</span>
+          <span class="room-type">Type: {{ room.room_type }}</span>
+          <span class="room-price">Price: {{ room.price }}</span>
+          <span class="room-status">Status: {{ room.room_status }}</span>
+        </div> 
+      {% endfor %}
     </div>
   </div>
 	</div>

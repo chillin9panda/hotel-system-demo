@@ -61,4 +61,5 @@ class Booking(models.Model):
         max_length=10, choices=BOOKING_STATUS_CHOICES, default='Pending')
 
     def __str__(self):
-        return f"Booking {self.booking_id}: for {self.guest.first_name} {self.guest.last_name}: in Room {self.room.room_number}"
+        return f"Booking {self.booking_id}: for {self.guest.first_name} {
+            self.guest.last_name}: in Room {self.room.room_number}"
