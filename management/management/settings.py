@@ -151,6 +151,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'login/static',
+    BASE_DIR / 'manager/static',
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'

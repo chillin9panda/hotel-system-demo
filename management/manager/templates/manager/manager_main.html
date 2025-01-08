@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manager</title>
+    <link
+      rel="stylesheet"
+      href="{% static 'manager/css/manager_main_style.css' %}"
+    />
+  </head>
+  <body>
+    <header class="nav-bar">
+      <div class="navigation">
+        <h1>Manager</h1>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#" id="">Home</a></li>
+            <li><a href="#" id="">Employees</a></li>
+            <li><a href="#" id="">Rooms</a></li>
+            <li><a href="#" id="">Reports</a></li>
+
+            <!--add notification  icon-->
+            <a href="#logout" class="logout-btn">Logout</a>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div id="wrapper">
+      <!-- Home Section -->
+      <div id="home-section" class="main-body" style="display: block">
+        <div class="welcome">
+          <h2>Welcome, Manager</h2>
+          <p>Today is <span id="current-date"></span></p>
+        </div>
+
+        <!-- Overview Section -->
+        <div id="info-section" class="info-section" style="display: block">
+          <div class="status-overview">
+            <h3>Quick Status</h3>
+            <div class="status-cards"><span>Active Booking: 15 </span></div>
+            <div class="status-cards"><span>On Duty Today: 10</span></div>
+            <div class="status-cards"><span>Pending Requests: 0</span></div>
+          </div>
+
+          <div class="search">
+            <h3>Search Employee</h3>
+            <input type="text" placeholder="Enter Employee Id" />
+            <button class="search-btn">Search</button>
+          </div>
+        </div>
+      </div>
+
+      <!--Employee-->
+      <div
+        id="employee-manage-section"
+        class="employee-manage"
+        style="display: none"
+      >
+        <h1>Employee</h1>
+      </div>
+      <!--Employee-->
+      <div id="reports-section" class="employee-manage" style="display: none">
+        <h1>Report</h1>
+      </div>
+    </div>
+  </body>
+  <script src="{% static 'manager/js/manager_main_script.js' %}"></script>
+</html>
