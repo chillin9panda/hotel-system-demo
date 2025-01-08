@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-9%64+-4%qz(l+@176k^zqvuf66xxe#6t7zcp=(2kxtq1xtl29k
 DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.8.171', '192.168.8.135',
-                 '10.0.0.100', '10.0.0.102', 'localhost', '127.0.0.1']
+                 '10.0.0.100', '10.0.0.102', '10.0.0.105', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'payments',
 ]
 
+ASGI_APPLICATION = 'management.asgi.application'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'login.middleware.LoginRequiredMiddleware',
 ]
 
@@ -144,7 +148,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'login/static',
