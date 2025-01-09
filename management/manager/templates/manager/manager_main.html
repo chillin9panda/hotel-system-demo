@@ -16,13 +16,13 @@
         <h1>Manager</h1>
         <nav>
           <ul class="nav-links">
-            <li><a href="#" id="">Home</a></li>
-            <li><a href="#" id="">Employees</a></li>
-            <li><a href="#" id="">Rooms</a></li>
-            <li><a href="#" id="">Reports</a></li>
+            <li><a href="#" id="home-link">Home</a></li>
+            <li><a href="#" id="employees-link">Employees</a></li>
+            <li><a href="#" id="rooms-link">Rooms</a></li>
+            <li><a href="#" id="reports-link">Reports</a></li>
 
-            <!--add notification  icon-->
-            <a href="#logout" class="logout-btn">Logout</a>
+            <!--add notification  icon later-->
+            <a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
           </ul>
         </nav>
       </div>
@@ -32,7 +32,7 @@
       <!-- Home Section -->
       <div id="home-section" class="main-body" style="display: block">
         <div class="welcome">
-          <h2>Welcome, Manager</h2>
+          <h2>Welcome, {{ user_name }}</h2>
           <p>Today is <span id="current-date"></span></p>
         </div>
 
@@ -54,14 +54,16 @@
       </div>
 
       <!--Employee-->
-      <div
-        id="employee-manage-section"
-        class="employee-manage"
-        style="display: none"
-      >
+      <div id="employees-section" class="employee-manage" style="display: none">
         <h1>Employee</h1>
       </div>
-      <!--Employee-->
+
+      <!--Rooms-->
+      <div id="rooms-section" class="employee-manage" style="display: none">
+        <h1>Rooms</h1>
+      </div>
+
+      <!--Reports-->
       <div id="reports-section" class="employee-manage" style="display: none">
         <h1>Report</h1>
       </div>
