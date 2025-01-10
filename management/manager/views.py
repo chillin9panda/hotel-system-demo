@@ -28,8 +28,8 @@ def add_room(request):
             return JsonResponse({
                 'success': False,
                 'message': f'Error{str(e)}'})
-    return render(request, 'manager/addRooms.html')
+    return render(request, 'manager/manager_main.html')
 
 
 def manager_home(request):
-    return render(request, 'manager/addRooms.html')
+    return render(request, 'manager/manager_main.html')

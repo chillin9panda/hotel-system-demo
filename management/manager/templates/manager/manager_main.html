@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manager</title>
+    <link
+      rel="stylesheet"
+      href="{% static 'manager/css/manager_main_style.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'manager/css/manager_rooms_style.css' %}"
+    />
+  </head>
+  <body>
+    <header class="nav-bar">
+      <div class="navigation">
+        <h1>Manager</h1>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#" id="home-link">Home</a></li>
+            <li><a href="#" id="employees-link">Employees</a></li>
+            <li><a href="#" id="rooms-link">Rooms</a></li>
+            <li><a href="#" id="reports-link">Reports</a></li>
+
+            <!--add notification  icon later-->
+            <a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div id="wrapper">
+      <!-- Home Section -->
+      <div id="home-section" class="main-body" style="display: block">
+        <div class="welcome">
+          <h2>Welcome, {{ user_name }}</h2>
+          <p>Today is <span id="current-date"></span></p>
+        </div>
+
+        <!-- Overview Section -->
+        <div id="info-section" class="info-section" style="display: block">
+          <div class="status-overview">
+            <h3>Quick Status</h3>
+            <div class="status-cards"><span>Active Booking: 15 </span></div>
+            <div class="status-cards"><span>On Duty Today: 10</span></div>
+            <div class="status-cards"><span>Pending Requests: 0</span></div>
+          </div>
+
+          <div class="search">
+            <h3>Search Employee</h3>
+            <input type="text" placeholder="Enter Employee Id" />
+            <button class="search-btn">Search</button>
+          </div>
+        </div>
+      </div>
+
+      <!--Employee-->
+      <div id="employees-section" class="employee-manage" style="display: none">
+        <h1>Employee</h1>
+      </div>
+
+      <!--Rooms-->
+      <div id="rooms-section" class="employee-manage" style="display: none">
+        <h1>Rooms</h1>
+        <div id="add-rooms">
+          <form
+            id="add-room-form"
+            action="{% url 'manager:add_room' %}"
+            method="POST"
+            autocomplete="off"
+          >
+            {% csrf_token %}
+            <div class="add-room-form-group">
+              <label for="room_number">Room Number:</label>
+              <input type="text" id="room_number" name="room_number" required />
+            </div>
+
+            <div class="add-room-form-group">
+              <label for="room_type">Room Type:</label>
+              <select id="room_type" name="room_type" required>
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+              </select>
+            </div>
+
+            <div class="add-room-form-group">
+              <label for="price">Price:</label>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                step="0.01"
+                required
+              />
+            </div>
+
+            <div class="add-room-form-group">
+              <label for="room_status">Room Status:</label>
+              <select id="room_status" name="room_status" required>
+                <option value="Available">Available</option>
+                <option value="Booked">Booked</option>
+                <option value="Maintenance">Maintenance</option>
+              </select>
+            </div>
+
+            <button class="add-room-btn" type="submit">Add Room</button>
+          </form>
+        </div>
+      </div>
+
+      <!--Reports-->
+      <div id="reports-section" class="employee-manage" style="display: none">
+        <h1>Report</h1>
+      </div>
+    </div>
+  </body>
+  <script src="{% static 'manager/js/manager_main_script.js' %}"></script>
+</html>
