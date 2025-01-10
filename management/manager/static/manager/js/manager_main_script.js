@@ -10,12 +10,22 @@ const formattedDate = currentDate.toLocaleDateString('en-US', {
 
 document.getElementById('current-date').textContent=formattedDate;
 
+//reset form
+function resetForm(){
+    const addRoomForm = document.querySelector('#rooms-section form');
+    if (addRoomForm) addRoomForm.reset();
+}
+
 // Tabs switching
 function hideAllSections() {
     document.getElementById('home-section').style.display = 'none';
     document.getElementById('employees-section').style.display = 'none';
     document.getElementById('rooms-section').style.display = 'none';
     document.getElementById('reports-section').style.display = 'none';
+
+    //reset form on tab switching
+    resetForm();
+
 }
 
 function highlightActiveLink(linkId){
@@ -85,6 +95,11 @@ function saveActiveSection(section){
     localStorage.setItem('activeSection', section);
 }
 
+//Logout btn event listner
+document.querySelector('.logout-btn').addEventListener('click', function (event) {
+    localStorage.clear();
+});
+
 //resore saved
 window.onload = function() {
     const activeSection = localStorage.getItem('activeSection') || home_link;
@@ -92,4 +107,7 @@ window.onload = function() {
     else if (activeSection === employees_link) showEmployees();
     else if (activeSection === rooms_link) showRooms();
     else if (activeSection === reports_link) showReports();
+
+    //reset form on reload
+    resetForm();
 };
