@@ -16,7 +16,9 @@
 			<nav>
 				<ul class="nav-links">
 					<li><a href="#" id="home-link">Home</a></li>
+          <li><a href="#" id="bookings-link">Bookings</a></li>
 					<li><a href="#" id="book-room-link">Book Room</a></li>
+          <li><a href="#" id="payments-link">Payment</a></li>
 					<li><a href="#" id="view-rooms-link">View Rooms</a></li>
 					<!--Add notitfication icon-->
 					<a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
@@ -49,6 +51,13 @@
     </div>
   </div>
 
+  <!--bookings-->
+  <div id="bookings-section" style="display: none;">
+    <h1>Bookings</h1> 
+  </div>
+
+
+  <!--Book a Room-->
   <div id="book-room-section" class="book-room" style="display: none;">
     <h3>Book a Room</h3>
     <!-- Content for Book Room Section -->
@@ -108,7 +117,9 @@
   </div>
 
   <!--Payment-->
-  <div id="payment-section" class="payment" style="display: none;">
+  <div id="payments-section" class="payment" style="display: none;">
+
+    <h1>Payments</h1>
 				<!--Payment Method-->
 				<div class="form-group">
 					<label for="payment-method">Payment Method: </label>
