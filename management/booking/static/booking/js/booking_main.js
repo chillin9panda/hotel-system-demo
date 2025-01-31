@@ -20,7 +20,7 @@ function showHome() {
 //show bookings section
 function showBookings() {
   hideAllSections();
-  document.getElementById('bookings-').style.display = 'block';
+  document.getElementById('bookings-section').style.display = 'block';
 }
 
 // show the Book Room section
@@ -41,6 +41,13 @@ function showViewRooms() {
   document.getElementById('view-rooms-section').style.display = 'block';
 }
 
+
+// clear form
+function resetForm() {
+  const createBookingForm = document.querySelector('#book-room-section form');
+  if (createBookingForm) createBookingForm.reset();
+}
+
 // Function to hide all sections
 function hideAllSections() {
   document.getElementById('home-section').style.display = 'none';  // Hide Home section
@@ -49,32 +56,50 @@ function hideAllSections() {
   document.getElementById('view-rooms-section').style.display = 'none'; // Hide View Rooms section
   document.getElementById('bookings-section').style.display = 'none';
   document.getElementById('payments-section').style.display = 'none';
+
+
+  resetForm();
 }
 
 // Event Listeners for navigation links
-document.getElementById('home-link').addEventListener('click', function(event) {
+const home_link = 'home-link';
+document.getElementById(home_link).addEventListener('click', function(event) {
   event.preventDefault();
   showHome();
+  highlightActiveLink(home_link);
+  saveActiveSection(home_link);
 });
 
-document.getElementById('book-room-link').addEventListener('click', function(event) {
+const book_room_link = 'book-room-link';
+document.getElementById(book_room_link).addEventListener('click', function(event) {
   event.preventDefault();
   showBookRoom();
+  highlightActiveLink(book_room_link);
+  saveActiveSection(book_room_link);
 });
 
-document.getElementById('view-rooms-link').addEventListener('click', function(event) {
+const view_rooms_link = 'view-rooms-link';
+document.getElementById(view_rooms_link).addEventListener('click', function(event) {
   event.preventDefault();
   showViewRooms();
+  highlightActiveLink(view_rooms_link);
+  saveActiveSection(view_rooms_link);
 });
 
-document.getElementById('bookings-link').addEventListener('click', function(event) {
+const bookings_link = 'bookings-link';
+document.getElementById(bookings_link).addEventListener('click', function(event) {
   event.preventDefault();
   showBookings();
+  highlightActiveLink(bookings_link);
+  saveActiveSection(bookings_link);
 });
 
-document.getElementById('payments-link').addEventListener('click', function(event) {
+const payments_link = 'payments-link';
+document.getElementById(payments_link).addEventListener('click', function(event) {
   event.preventDefault();
   showPayment();
+  highlightActiveLink(payments_link);
+  saveActiveSection(payments_link);
 });
 
 
@@ -93,6 +118,30 @@ document.getElementById("payment-method").addEventListener("change", function() 
   document.getElementById("transaction-id").value = "";
 });
 
-// Set the default section to show (Home) when the page loads
-window.onload = showHome;
+//Highlight Active tab
+function highlightActiveLink(linkId) {
+  document.querySelectorAll('.nav-links li a').forEach(link => link.classList.remove('active'));
+  document.getElementById(linkId).classList.add('active');
+}
+
+//Save active section for reload
+function saveActiveSection(section) {
+  localStorage.setItem('activeSection', section);
+}
+
+//Logout btn event listner
+document.querySelector('.logout-btn').addEventListener('click', function(event) {
+  localStorage.clear();
+});
+
+//resore saved
+window.onload = function() {
+  const activeSection = localStorage.getItem('activeSection') || home_link;
+  if (activeSection === home_link) showHome();
+  else if (activeSection === bookings_link) showBookings();
+  else if (activeSection === book_room_link) showBookRoom();
+  else if (activeSection === payments_link) showPayment();
+  else if (activeSection === view_rooms_link) showViewRooms();
+};
+
 
