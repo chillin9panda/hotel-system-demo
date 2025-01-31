@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'login',
     'manager',
     'booking',
-    'payments',
+    'cashier',
 ]
 
 ASGI_APPLICATION = 'management.asgi.application'
