@@ -54,6 +54,28 @@
   <!--bookings-->
   <div id="bookings-section" style="display: none;">
     <h1>Bookings</h1> 
+    <table>
+      <thead>
+        <tr>
+          <th>Booking Id</th>
+          <th>First Name</th>
+          <th>Phone Number</th>
+          <th>Room Number</th>
+          <th>Booking Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for booking in booking_data %}
+        <tr>
+          <td>{{ booking.0 }}</td>
+          <td>{{ booking.1 }}</td>
+          <td>{{ booking.2 }}</td>
+          <td>{{ booking.3 }}</td>
+          <td>{{ booking.4 }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 
 

@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import ValidationError
 from .models import Room, Guest, Booking
 from django.http import HttpResponse
+from django.db import connection
 
 # Create your views here.
 
@@ -61,6 +62,28 @@ def book_room(request):
     return HttpResponse("Form Submitted")
 
 
+def create_booking_view(request):
+    sql = """
+        CREATE OR REPLACE VIEW booking_view AS
+        SELECT
+            b.booking_id,
+            g.first_name,
+            g.phone_number,
+            r.room_number,
+            b.status
+        FROM booking_booking b
+        JOIN booking_guest g ON b.guest_id = g.phone_number
+        JOIN booking_room r ON b.room_id = r.room_number;
+    """
+
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+        return HttpResponse("View 'booking_view' created.")
+    except Exception as e:
+        return HttpResponse(f"Error creating view:  {str(e)}")
+
+
 def is_receptionist(user):
     return user.role == 'Receptionist'
 
@@ -75,6 +98,10 @@ def booking_main(request):
     available_count = available_rooms.count()
     booked_count = booked_rooms.count()
 
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM booking_view;")
+        booking_data = cursor.fetchall()
+
     return render(request,
                   'booking/booking_main.html',
                   {
@@ -83,4 +110,5 @@ def booking_main(request):
                       'booked_count': booked_count,
                       'all_rooms': rooms,
                       'rooms': available_rooms,
+                      'booking_data': booking_data,
                   })
