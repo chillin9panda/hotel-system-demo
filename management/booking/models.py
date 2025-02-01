@@ -63,3 +63,12 @@ class Booking(models.Model):
     def __str__(self):
         return f"Booking {self.booking_id}: for {self.guest.first_name} {
             self.guest.last_name}: in Room {self.room.room_number}"
+
+
+class Services(models.Model):
+    service_id = models.AutoField(primary_key=True)
+    service_name = models.CharField(max_length=50, unique=True)
+    service_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.service_name
