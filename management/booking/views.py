@@ -62,6 +62,10 @@ def book_room(request):
     return HttpResponse("Form Submitted")
 
 
+def edit_booking(request):
+    return render(request, 'booking/edit_booking.html')
+
+
 def create_booking_view(request):
     sql = """
         CREATE OR REPLACE VIEW booking_view AS

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit Booking</title>
+  <link rel="stylesheet" href="{% static 'booking/css/edit_booking.css' %}">
+</head>
+
+<body>
+  <div id="edit-booking">
+    <div class="edit-booking-container">
+      <h2>Booking</h2>
+      <form id="edit-booking-form" method="POST">
+        <div class="edit-booking-group">
+          <label for="bookingId">Booking Id: </label>
+          <span>1</span>
+        </div>
+
+        <div class="edit-booking-group">
+          <label for="Name">Name: </label>
+          <span>John Doe</span>
+        </div>
+
+        <div class="edit-booking-group">
+          <label for="phoneNumber">Phone Number: </label>
+          <span>0916042902</span>
+        </div>
+
+        <div class="edit-booking-group">
+          <label for="email">Email: </label>
+          <span>ab@gmail.com</span>
+        </div>
+
+        <div class="edit-booking-group">
+          <label for="checkOutDate">Check-Out-Date: </label>
+          <input type="date" name="check_in_date">
+        </div>
+
+        <div class="edit-booking-group">
+          <label for="roomNumber">Booking Id: </label>
+          <select>
+            <option value="1">1</option>
+          </select>
+        </div>
+
+        <button class="submit-btn" type="submit">Modify</button>
+      </form>
+    </div>
+  </div>
+  <script src="{% static 'booking/js/edit_booking.js' %}"></script>
+</body>
+
+</html>
