@@ -4,13 +4,8 @@
 * MySQL(MariaDB) server  
   
 ## Create DB
-1. Login to MySQL(MariaDB) as root  
-2. Create DB: `CREATE DATABASE management_db;`  
-3. Create user: `CREATE USER 'django_user'@'localhost' IDENTIFIED BY '7529';`  
-4. Privileges:  
-    `GRANT ALL PRIVILEGES ON management_db.* TO 'django_user'@'localhost';`  
-    `FLUSH PRIVILEGES;`
-
+Login as root and run the SQL commands from `management_db.sql` file  
+  
 ## Virtual Environment  
 create Virtual environment in project folder: `python -m venv .venv`    
   
