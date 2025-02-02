@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import ValidationError
@@ -62,8 +62,13 @@ def book_room(request):
     return HttpResponse("Form Submitted")
 
 
-def edit_booking(request):
-    return render(request, 'booking/edit_booking.html')
+def edit_booking(request, booking_id):
+    booking = get_object_or_404(Booking, booking_id=booking_id)
+
+    return render(request,
+                  'booking/edit_booking.html', {
+                      'booking': booking,
+                  })
 
 
 def create_booking_view(request):

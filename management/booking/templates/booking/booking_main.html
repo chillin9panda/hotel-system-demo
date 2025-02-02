@@ -67,7 +67,7 @@
       <tbody>
         {% for booking in booking_data %}
         <tr>
-          <td>{{ booking.0 }}</td>
+          <td><a href="edit_booking/{{ booking.0 }}">{{ booking.0 }}</a></td>
           <td>{{ booking.1 }}</td>
           <td>{{ booking.2 }}</td>
           <td>{{ booking.3 }}</td>
@@ -76,8 +76,6 @@
         {% endfor %}
       </tbody>
     </table>
-
-    <a href="edit_booking">edit_booking</a>
   </div>
 
 
