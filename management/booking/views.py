@@ -51,13 +51,13 @@ def book_room(request):
                 booking.full_clean()
                 booking.save()
                 messages.success(request, "Booking Successfull")
-                return redirect('booking_confirmation')
+                return redirect('booking:home')
             except ValidationError as e:
                 messages.error(request, f"Error: {e}")
-                return redirect('booking_main')
+                return redirect('booking:home')
         except Room.DoesNotExist:
             messages.error(request, "Room not Found!")
-            return redirect('booking_main')
+            return redirect('booking:home')
 
     return HttpResponse("Form Submitted")
 
