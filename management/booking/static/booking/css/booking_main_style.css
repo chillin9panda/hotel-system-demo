@@ -59,7 +59,7 @@
 	border-radius: 20px;
 	font-size: 16px;
 	font-weight: bold;
-	transition: backgrounf-color 0.3s, color 0.3s;
+	transition: background-color 0.3s, color 0.3s;
 }
 
 .logout-btn:hover {
@@ -185,6 +185,21 @@
 }
 
 /*Book room*/
+#book-room-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+#book-room-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+}
+
 .form-group {
 	margin-bottom: 15px;
 }
@@ -220,55 +235,78 @@
 	background-color: #45a049;
 }
 
-/*view rooms*/
-.room-list {
-	display: flex;
-	flex-direction: column;
-	gap: 10px
-}
-
-.room {
-	display: flex;
-	justify-content: space-between;
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	background-color: #f9f9f9;
-}
-
-.room-status {
-	font-weight: bold;
-	padding: 5px 10px;
-	border-radius: 5px;
-}
-
-.room-status.available {
-	color: #fff;
-	background-color: #28a745;
-}
-
-.room-status.occupied {
-	color: #fff;
-	background-color: #ffc107;
-}
-
-.room-status.available {
-	color: #fff;
-	background-color: #dc3545;
-}
 
 /* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
+/*Bookings*/
+.edit-booking-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  transition: color 0.3s ease, text-decoration 0.3 ease;
 }
 
-table th, table td {
+.edit-booking-link:hover{
+  color: #0056b3;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.edit-booking-link:active {
+  color: #003f7f;
+}
+
+.bookings-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bookings-list-table th,
+.bookings-list-table td {
   padding: 10px;
   text-align: left;
   border: 1px solid #ddd;
 }
 
-table tr {
-  margin-bottom: 10px;
+.bookings-list-table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.bookings-list-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.bookings-list-table tr:hover {
+  background-color: #e9ecef;
+}
+
+/*Rooms*/
+.room-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.room-list-table th,
+.room-list-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.room-list-table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.room-list-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.room-list-table tr:hover {
+  background-color: #e9ecef;
 }

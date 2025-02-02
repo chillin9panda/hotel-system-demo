@@ -16,10 +16,10 @@
 			<nav>
 				<ul class="nav-links">
 					<li><a href="#" id="home-link">Home</a></li>
-          <li><a href="#" id="bookings-link">Bookings</a></li>
 					<li><a href="#" id="book-room-link">Book Room</a></li>
+          <li><a href="#" id="bookings-link">Bookings</a></li>
           <li><a href="#" id="payments-link">Payment</a></li>
-					<li><a href="#" id="view-rooms-link">View Rooms</a></li>
+					<li><a href="#" id="view-rooms-link">Rooms</a></li>
 					<!--Add notitfication icon-->
 					<a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
 				</ul>
@@ -54,7 +54,7 @@
   <!--bookings-->
   <div id="bookings-section" style="display: none;">
     <h1>Bookings</h1> 
-    <table>
+    <table class="bookings-list-table">
       <thead>
         <tr>
           <th>Booking Id</th>
@@ -67,7 +67,7 @@
       <tbody>
         {% for booking in booking_data %}
         <tr>
-          <td><a href="edit_booking/{{ booking.0 }}">{{ booking.0 }}</a></td>
+          <td><a href="edit_booking/{{ booking.0 }}" class="edit-booking-link">{{ booking.0 }}</a></td>
           <td>{{ booking.1 }}</td>
           <td>{{ booking.2 }}</td>
           <td>{{ booking.3 }}</td>
@@ -162,7 +162,7 @@
 					<div class="form-group">
 						<label for="transaction-id">Transaction ID: </label>
 						<input type="text" id="transaction-id" placeholder="Enter Transaction ID"/>
-					</div> 
+					</div> views.py
 				</div>
 
   </div>
@@ -170,16 +170,26 @@
   <!--View Rooms-->
   <div id="view-rooms-section" class="view-rooms" style="display: none;">
     <h3>Rooms Overview</h3>
-    <div class="room-list">
-      {% for room in all_rooms %}
-        <div class="room">
-          <span class="room-number">Number: {{ room.room_number }}</span>
-          <span class="room-type">Type: {{ room.room_type }}</span>
-          <span class="room-price">Price: {{ room.price }}</span>
-          <span class="room-status">Status: {{ room.room_status }}</span>
-        </div> 
-      {% endfor %}
-    </div>
+      <table class="room-list-table">
+        <thead>
+          <tr>
+            <th>Room Number</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for room in all_rooms %}
+            <tr>
+              <td>{{ room.room_number }}</td>
+              <td>{{ room.room_type }}</td>
+              <td>{{ room.price }}</td>
+              <td>{{ room.room_status }}</td>
+            </tr>
+          {% endfor %}
+         </tbody>
+      </table>
   </div>
 	</div>
 
