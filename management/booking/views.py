@@ -64,10 +64,35 @@ def book_room(request):
 
 def edit_booking(request, booking_id):
     booking = get_object_or_404(Booking, booking_id=booking_id)
+    available_rooms = Room.objects.filter(room_status='Available')
+
+    old_room = booking.room
+
+    if request.method == 'POST':
+        check_out_date = request.POST.get('check_out_date')
+        new_room_number = request.POST.get('room_number')
+
+        if check_out_date:
+            booking.check_out_date = check_out_date
+
+        if new_room_number and new_room_number != old_room.room_number:
+            new_room = get_object_or_404(Room, room_number=new_room_number)
+
+            old_room.room_status = 'Available'
+            old_room.save()
+
+            new_room.room_status = 'Booked'
+            new_room.save()
+
+            booking.room = new_room
+
+        booking.save()
+        return redirect('booking:home')
 
     return render(request,
                   'booking/edit_booking.html', {
                       'booking': booking,
+                      'available_rooms': available_rooms,
                   })
 
 
