@@ -4,7 +4,7 @@
 * MySQL(MariaDB) server  
   
 ## Create DB
-Login as root and run the SQL commands from `management_db.sql` file  
+Login as root and run the SQL commands from ![SQL](management_db.sql "management_db.sql")  
   
 ## Virtual Environment  
 create Virtual environment in project folder: `python -m venv .venv`    
