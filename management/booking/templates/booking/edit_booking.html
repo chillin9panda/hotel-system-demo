@@ -36,6 +36,12 @@
           <span>{{ booking.guest.email }}</span>
         </div>
 
+
+       <div class="edit-booking-group">
+          <label for="checkInDate">Check-In-Date: </label>
+          <input type="date" name="check_in_date" value="{{ booking.check_in_date }}">
+        </div>        
+
         <div class="edit-booking-group">
           <label for="checkOutDate">Check-Out-Date: </label>
           <input type="date" name="check_out_date" value="{{ booking.check_out_date }}">
