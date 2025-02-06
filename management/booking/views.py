@@ -154,7 +154,7 @@ def is_receptionist(user):
     return user.role == 'Receptionist'
 
 
-@ user_passes_test(is_receptionist, login_url='/login/')
+@user_passes_test(is_receptionist, login_url='/login/')
 def booking_main(request):
     rooms = Room.objects.all()
     available_rooms = Room.objects.filter(room_status='Available')
