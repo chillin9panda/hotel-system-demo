@@ -3,8 +3,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import ValidationError
 from .models import Room, Guest, Booking
+from payments.models import Booking_Payments
 from django.http import HttpResponse
-from django.db import connection
+from django.db import connection, transaction
+from datetime import datetime
 
 # Create your views here.
 
@@ -34,29 +36,36 @@ def book_room(request):
                           'email': email,
                           }
             )
+            with transaction.atomic():
 
-            # Create Booking
-            booking = Booking(
-                room=room,
-                guest=guest,
-                check_in_date=check_in_date,
-                check_out_date=check_out_date,
-            )
+                # Create Booking
+                booking = Booking(
+                    room=room,
+                    guest=guest,
+                    check_in_date=check_in_date,
+                    check_out_date=check_out_date,
+                )
 
-            room.room_status = 'Booked'
-            room.save()
-
-        # Validate and sabe booking
-            try:
                 booking.full_clean()
                 booking.save()
-                messages.success(request, "Booking Successfull")
-                return redirect('booking:home')
-            except ValidationError as e:
-                messages.error(request, f"Error: {e}")
-                return redirect('booking:home')
+
+                Booking_Payments.objects.create(
+                    booking_id=booking,
+                    total_amount=0,
+                )
+
+                room.room_status = 'Booked'
+                room.save()
+
+            messages.success(request, "Booking Successfull")
+            return redirect('booking:home')
+
         except Room.DoesNotExist:
             messages.error(request, "Room not Found!")
+            return redirect('booking:home')
+
+        except ValidationError as e:
+            messages.error(request, f"Error: {e}")
             return redirect('booking:home')
 
     return HttpResponse("Form Submitted")
@@ -69,11 +78,18 @@ def edit_booking(request, booking_id):
     old_room = booking.room
 
     if request.method == 'POST':
-        check_out_date = request.POST.get('check_out_date')
+        check_in_str = request.POST.get('check_in_date')
+        check_out_str = request.POST.get('check_out_date')
         new_room_number = request.POST.get('room_number')
 
-        if check_out_date:
+        if check_out_str:
+            check_out_date = datetime.strptime(
+                check_out_str, "%y-%m-%d").date()
             booking.check_out_date = check_out_date
+
+        if check_in_str:
+            check_in_date = datetime.strptime(check_in_str, "%Y-%m-%d").date()
+            booking.check_in_date = check_in_date
 
         if new_room_number and new_room_number != old_room.room_number:
             new_room = get_object_or_404(Room, room_number=new_room_number)
@@ -87,6 +103,22 @@ def edit_booking(request, booking_id):
             booking.room = new_room
 
         booking.save()
+
+        # update payment
+        payment = get_object_or_404(Booking_Payments, booking_id=booking)
+
+        check_in_date = booking.check_in_date
+        check_out_date = booking.check_out_date
+
+        if check_in_date and check_out_date:
+            days_stayed = (check_out_date - check_in_date).days
+            days_stayed = max(days_stayed, 1)
+            room_price = booking.room.price
+            total_amount = days_stayed * room_price
+
+            payment.total_amount = total_amount
+            payment.save()
+
         return redirect('booking:home')
 
     return render(request,
@@ -122,7 +154,7 @@ def is_receptionist(user):
     return user.role == 'Receptionist'
 
 
-@user_passes_test(is_receptionist, login_url='/login/')
+@ user_passes_test(is_receptionist, login_url='/login/')
 def booking_main(request):
     rooms = Room.objects.all()
     available_rooms = Room.objects.filter(room_status='Available')
