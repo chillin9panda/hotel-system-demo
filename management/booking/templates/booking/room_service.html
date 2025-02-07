@@ -10,8 +10,55 @@
 </head>
 
 <body>
-  <h1>Room Service</h1>
+  <div id="edit-booking">
+    <div class="edit-booking-container">
+      <h2>Booking</h2>
+      <form id="edit-booking-form" method="POST">
+        {% csrf_token %}
+        <div class="edit-booking-group">
+          <label for="bookingId">Booking Id: </label>
+          <span>{{ booking.booking_id }}</span>
+        </div>
 
+        <div class="edit-booking-group">
+          <label for="name">Name: </label>
+          <span>{{ guest_name }}</span>
+        </div>
+
+        <div class="edit-booking-group">
+          <label for="phone_number">Phone Number: </label>
+          <span>{{ phone_number }}</span>
+        </div>
+
+        <div class="edit-booking-group">
+          <label for="room_number">Room Number: </label>
+          <span>{{ room }}</span>
+        </div>
+
+        <div class="edit-booking-group">
+          <label for="service">Service Name: </label>
+          <select id="room-number" name="service_id">
+            <option value="" disable selected>Select Service</option>
+            {% for service in services %}
+            <option value="{{ service.service_id }}">{{ service.service_name }}</option>
+            {% endfor %}
+          </select>
+
+        </div>
+
+
+        <div class="edit-booking-group">
+          <label for="quantity">Quantity: </label>
+          <input type="number" name="quantity" min="1" value="1" required>
+        </div>
+
+        <button class="submit-btn" type="submit">Order Service</button>
+      </form>
+    </div>
+  </div>
+  <script src="{% static 'booking/js/edit_booking.js' %}"></script>
 </body>
+
+
 
 </html>

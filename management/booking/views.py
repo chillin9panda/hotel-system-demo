@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import ValidationError
-from .models import Room, Guest, Booking
-from payments.models import Booking_Payments
+from .models import Room, Guest, Booking, Services
+from payments.models import Booking_Payments, Service_Payments
 from django.http import HttpResponse
 from django.db import connection, transaction
 from datetime import datetime
+from django.utils import timezone
 
 # Create your views here.
 
@@ -128,8 +129,37 @@ def edit_booking(request, booking_id):
                   })
 
 
-def room_service(request):
-    return render(request, 'booking/room_service.html')
+def room_service(request, booking_id):
+    booking = get_object_or_404(Booking, booking_id=booking_id)
+    guest = booking.guest
+    services = Services.objects.all()
+
+    if request.method == 'POST':
+        service_id = request.POST.get('service_id')
+        quantity = int(request.POST.get('quantity', 1))
+
+        service = get_object_or_404(Services, service_id=service_id)
+        total_amount = service.service_price * quantity
+
+        Service_Payments.objects.create(
+            booking_id=booking,
+            service_id=service,
+            quantity=quantity,
+            total_amount=total_amount,
+            ordered_on=timezone.now(),
+            payment_status='Unpaid',
+        )
+
+        messages.success(request, "Order Successfull!")
+        return redirect('booking:room_service', booking_id=booking_id)
+    return render(request,
+                  'booking/room_service.html', {
+                      'booking': booking,
+                      'guest_name': f"{guest.first_name} {guest.last_name}",
+                      'room': booking.room,
+                      'phone_number': guest.phone_number,
+                      'services': services,
+                  })
 
 
 def view_payments(request):

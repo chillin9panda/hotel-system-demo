@@ -54,7 +54,7 @@ class Service_Payments(models.Model):
     ]
 
     PAYMENT_STATUS = [
-        ('Pending', 'Pending'),
+        ('Unpaid', 'Unpaid'),
         ('Paid', 'Paid'),
         ('Cancelled', 'Cancelled'),
     ]
@@ -68,9 +68,9 @@ class Service_Payments(models.Model):
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     payment_method = models.CharField(
         max_length=20, choices=PAYMENT_METHOD, blank=True)
-    ordered = models.DateTimeField(auto_now_add=True)
+    ordered_on = models.DateTimeField(auto_now_add=True)
     payment_status = models.CharField(
-        max_length=15, choices=PAYMENT_STATUS, default='Pending')
+        max_length=15, choices=PAYMENT_STATUS, default='Unpaid')
 
     def __str__(self):
         return self.service_payment_id
