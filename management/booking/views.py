@@ -152,6 +152,8 @@ def room_service(request, booking_id):
 
         messages.success(request, "Order Successfull!")
         return redirect('booking:room_service', booking_id=booking_id)
+
+    used_services = Service_Payments.objects.filter(booking_id=booking_id)
     return render(request,
                   'booking/room_service.html', {
                       'booking': booking,
@@ -159,33 +161,12 @@ def room_service(request, booking_id):
                       'room': booking.room,
                       'phone_number': guest.phone_number,
                       'services': services,
+                      'used_services': used_services,
                   })
 
 
 def view_payments(request):
     return render(request, 'booking/view_payments.html')
-
-
-def create_booking_view(request):
-    sql = """
-        CREATE OR REPLACE VIEW booking_view AS
-        SELECT
-            b.booking_id,
-            g.first_name,
-            g.phone_number,
-            r.room_number,
-            b.status
-        FROM booking_booking b
-        JOIN booking_guest g ON b.guest_id = g.phone_number
-        JOIN booking_room r ON b.room_id = r.room_number;
-    """
-
-    try:
-        with connection.cursor() as cursor:
-            cursor.execute(sql)
-        return HttpResponse("View 'booking_view' created.")
-    except Exception as e:
-        return HttpResponse(f"Error creating view:  {str(e)}")
 
 
 def is_receptionist(user):
@@ -216,3 +197,33 @@ def booking_main(request):
                       'rooms': available_rooms,
                       'booking_data': booking_data,
                   })
+
+
+"""
+DB Views Creation Section
+
+    - To be moved later on to somewhere,
+        it can be auto excutun when running the server
+"""
+
+
+def create_booking_view(request):
+    sql = """
+        CREATE OR REPLACE VIEW booking_view AS
+        SELECT
+            b.booking_id,
+            g.first_name,
+            g.phone_number,
+            r.room_number,
+            b.status
+        FROM booking_booking b
+        JOIN booking_guest g ON b.guest_id = g.phone_number
+        JOIN booking_room r ON b.room_id = r.room_number;
+    """
+
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+        return HttpResponse("View 'booking_view' created.")
+    except Exception as e:
+        return HttpResponse(f"Error creating view:  {str(e)}")

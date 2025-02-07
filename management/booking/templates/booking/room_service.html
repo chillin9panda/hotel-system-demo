@@ -6,7 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Room Service</title>
-  <link href="{% static 'booking/css/booking_sevice_payment.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'booking/css/booking_sevice_payment.css' %}" />
+  <link rel="stylesheet" href="{% static 'booking/css/table.css' %}" />
 </head>
 
 <body>
@@ -52,6 +53,33 @@
 
         <button class="submit-btn" type="submit">Order Service</button>
       </form>
+    </div>
+
+    <div class="used-services-list">
+      <table class="listing-table">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Ordered Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for service in used_services %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ service.service_id.service_name }}</td>
+            <td>{{ service.quantity }}</td>
+            <td>{{ service.ordered_on }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4">No Services Ordered.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
   <script src="{% static 'booking/js/booking_sevice_payment.js' %}"></script>
