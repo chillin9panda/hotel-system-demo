@@ -22,7 +22,7 @@
           <ul class="nav-links">
             <li><a href="#" id="home-link">Home</a></li>
             <li><a href="#" id="employees-link">Employees</a></li>
-            <li><a href="#" id="rooms-link">Rooms</a></li>
+            <li><a href="#" id="reception-link">Reception</a></li>
             <li><a href="#" id="reports-link">Reports</a></li>
 
             <!--add notification  icon later-->
@@ -62,9 +62,9 @@
         <h1>Employee</h1>
       </div>
 
-      <!--Rooms-->
-      <div id="rooms-section" class="employee-manage" style="display: none">
-        <h1>Rooms</h1>
+      <!--Receptions-->
+      <div id="reception-section" class="employee-manage" style="display: none">
+        <h1>Reception</h1>
         <div id="add-rooms">
           <form
             id="add-room-form"
@@ -109,6 +109,36 @@
             <button class="add-room-btn" type="submit">Add Room</button>
           </form>
         </div>
+
+      <!-- Services -->
+        <div id="add-service">
+          <form
+            id="add-service-form"
+            action="{% url 'manager:add_service' %}"
+            method="POST"
+            autocomplete="off"
+          >
+            {% csrf_token %}
+            <div class="add-service-form-group">
+              <label for="service_name">Service Name: </label>
+              <input type="text" id="service_name" name="service_name" required />
+            </div>
+
+            <div class="add-service-form-group">
+              <label for="service_price">Price: </label>
+              <input
+                type="number"
+                id="price"
+                name="service_price"
+                step="0.01"
+                required
+              />
+            </div>
+
+            <button class="add-service-btn" type="submit">Add Service</button>
+          </form>
+        </div>
+
       </div>
 
       <!--Reports-->

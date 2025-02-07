@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
 # Create your views here.
-from booking.models import Room
+from booking.models import Room, Services
 from django.contrib import messages
 
 
@@ -24,6 +24,27 @@ def add_room(request):
             return JsonResponse({
                 'success': True,
                 'message': 'Room Added Successfully'})
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'message': f'Error{str(e)}'})
+    return render(request, 'manager/manager_main.html')
+
+
+def add_service(request):
+    if request.method == 'POST':
+        service_name = request.POST.get('service_name')
+        service_price = request.POST.get('service_price')
+
+        # Add service to the database
+        try:
+            Services.objects.create(
+                service_name=service_name,
+                service_price=service_price,
+            )
+            return JsonResponse({
+                'success': True,
+                'message': 'Service Added Successfully'})
         except Exception as e:
             return JsonResponse({
                 'success': False,
