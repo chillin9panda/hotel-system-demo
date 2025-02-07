@@ -12,7 +12,7 @@ document.getElementById('current-date').textContent = formattedDate;
 
 //reset form
 function resetForm() {
-  const addRoomForm = document.querySelector('#rooms-section form');
+  const addRoomForm = document.querySelector('#reception-section form');
   if (addRoomForm) addRoomForm.reset();
 }
 
@@ -20,7 +20,7 @@ function resetForm() {
 function hideAllSections() {
   document.getElementById('home-section').style.display = 'none';
   document.getElementById('employees-section').style.display = 'none';
-  document.getElementById('rooms-section').style.display = 'none';
+  document.getElementById('reception-section').style.display = 'none';
   document.getElementById('reports-section').style.display = 'none';
 
   //reset form on tab switching
@@ -45,9 +45,9 @@ function showEmployees() {
   document.getElementById('employees-section').style.display = 'block';
 }
 
-function showRooms() {
+function showReception() {
   hideAllSections();
-  document.getElementById('rooms-section').style.display = 'block';
+  document.getElementById('reception-section').style.display = 'block';
 }
 
 
@@ -73,12 +73,12 @@ document.getElementById(employees_link).addEventListener('click', function(event
   saveActiveSection(employees_link);
 });
 
-const rooms_link = 'rooms-link';
-document.getElementById(rooms_link).addEventListener('click', function(event) {
+const reception_link = 'reception-link';
+document.getElementById(reception_link).addEventListener('click', function(event) {
   event.preventDefault();
-  showRooms();
-  highlightActiveLink(rooms_link);
-  saveActiveSection(rooms_link);
+  showReception();
+  highlightActiveLink(reception_link);
+  saveActiveSection(reception_link);
 });
 
 const reports_link = 'reports-link';
@@ -104,7 +104,7 @@ window.onload = function() {
   const activeSection = localStorage.getItem('activeSection') || home_link;
   if (activeSection === home_link) showHome();
   else if (activeSection === employees_link) showEmployees();
-  else if (activeSection === rooms_link) showRooms();
+  else if (activeSection === reception_link) showReception();
   else if (activeSection === reports_link) showReports();
 
   //reset form on reload
