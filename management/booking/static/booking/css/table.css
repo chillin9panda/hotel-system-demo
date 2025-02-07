@@ -1,0 +1,26 @@
+.listing-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.listing-table th,
+.listing-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.listing-table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.listing-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.listing-table tr:hover {
+  background-color: #e9ecef;
+}
