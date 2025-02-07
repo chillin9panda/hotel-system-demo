@@ -1,22 +1,31 @@
 /* reset html */
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   background-color: #e0e0e0;
 }
 
-#edit-booking {
+#return-home {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  transition: color 0.3s ease, text-decoration 0.3 ease;
+
+}
+
+.view {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 75vh;
 }
 
-.edit-booking-container {
+.container {
   background: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -25,22 +34,22 @@ body {
   max-width: 400px;
 }
 
-.edit-booking-container h2 {
+.container h2 {
   text-align: center;
   margin-bottom: 8px;
 }
 
-.edit-booking-group{
+.edit-booking-group {
   margin-bottom: 15px;
 }
 
-.edit-booking-form label {
+.form-group label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-.edit-booking-form span {
+.form-group span {
   display: block;
   padding: 8px;
   background-color: #f8f9fa;
@@ -48,19 +57,19 @@ body {
   border: 1px solid #ddd;
 }
 
-.edit-booking-group input,
-.edit-booking-group select {
+.form-group input,
+.form-group select {
   width: 50%;
   padding: 7px;
   font-size: 16px;
-  border: 1px, solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 4px;
   background: #fff;
   outline: none;
 }
 
-.edit-booking-group input:focus,
-.edit-booking-group select:focus {
+.form-group input:focus,
+.form-group select:focus {
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
 }
@@ -70,11 +79,11 @@ body {
   padding: 10px;
   background-color: #4caf50;
   color: #fff;
-  color: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 20px;
+  margin-top: 10px;
 }
 
 .submit-btn:hover {

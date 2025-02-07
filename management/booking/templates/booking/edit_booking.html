@@ -7,47 +7,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Edit Booking</title>
-  <link rel="stylesheet" href="{% static 'booking/css/edit_booking.css' %}">
+  <link rel="stylesheet" href="{% static 'booking/css/booking_sevice_payment.css' %}">
 </head>
 
 <body>
-  <div id="edit-booking">
-    <div class="edit-booking-container">
-      <h2>Booking</h2>
-      <form id="edit-booking-form" method="POST">
+  <div class="view">
+    <div class="container">
+      <h2><a href="{% url 'booking:home' %}" id="return-home">Booking</a></h2>
+      <form id="form" method="POST">
         {% csrf_token %}
-        <div class="edit-booking-group">
+        <div class="form-group">
           <label for="bookingId">Booking Id: </label>
           <span>{{ booking.booking_id }}</span>
         </div>
 
-        <div class="edit-booking-group">
+        <div class="form-group">
           <label for="Name">Name: </label>
           <span>{{ booking.guest.first_name }} {{booking.guest.last_name}}</span>
         </div>
 
-        <div class="edit-booking-group">
+        <div class="form-group">
           <label for="phoneNumber">Phone Number: </label>
           <span>{{ booking.guest.phone_number }}</span>
         </div>
 
-        <div class="edit-booking-group">
+        <div class="form-group">
           <label for="email">Email: </label>
           <span>{{ booking.guest.email }}</span>
         </div>
 
 
-       <div class="edit-booking-group">
+       <div class="form-group">
           <label for="checkInDate">Check-In-Date: </label>
           <input type="date" name="check_in_date" value="{{ booking.check_in_date }}">
         </div>        
 
-        <div class="edit-booking-group">
+        <div class="form-group">
           <label for="checkOutDate">Check-Out-Date: </label>
           <input type="date" name="check_out_date" value="{{ booking.check_out_date }}">
         </div>
 
-        <div class="edit-booking-group">
+        <div class="form-group">
           <label for="roomNumber">Booking Id: </label>
           <select id="room-number" name="room_number">
             <option value="" disable selected>Select Room</option>
@@ -62,7 +62,7 @@
       </form>
     </div>
   </div>
-  <script src="{% static 'booking/js/edit_booking.js' %}"></script>
+  <script src="{% static 'booking/js/booking_sevice_payment.js' %}"></script>
 </body>
 
 </html>
