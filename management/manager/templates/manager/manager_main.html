@@ -11,7 +11,7 @@
     />
     <link
       rel="stylesheet"
-      href="{% static 'manager/css/manager_rooms_style.css' %}"
+      href="{% static 'manager/css/manager_reception_style.css' %}"
     />
   </head>
   <body>
@@ -65,20 +65,21 @@
       <!--Receptions-->
       <div id="reception-section" class="employee-manage" style="display: none">
         <h1>Reception</h1>
-        <div id="add-rooms">
+        <div id="add-rooms" class="add-new">
           <form
             id="add-room-form"
             action="{% url 'manager:add_room' %}"
+            class="add-form"
             method="POST"
             autocomplete="off"
           >
             {% csrf_token %}
-            <div class="add-room-form-group">
+            <div class="add-form-group">
               <label for="room_number">Room Number:</label>
               <input type="text" id="room_number" name="room_number" required />
             </div>
 
-            <div class="add-room-form-group">
+            <div class="add-form-group">
               <label for="room_type">Room Type:</label>
               <select id="room_type" name="room_type" required>
                 <option value="Single">Single</option>
@@ -86,7 +87,7 @@
               </select>
             </div>
 
-            <div class="add-room-form-group">
+            <div class="add-form-group">
               <label for="price">Price:</label>
               <input
                 type="number"
@@ -97,7 +98,7 @@
               />
             </div>
 
-            <div class="add-room-form-group">
+            <div class="add-form-group">
               <label for="room_status">Room Status:</label>
               <select id="room_status" name="room_status" required>
                 <option value="Available">Available</option>
@@ -106,25 +107,26 @@
               </select>
             </div>
 
-            <button class="add-room-btn" type="submit">Add Room</button>
+            <button class="add-btn" type="submit">Add Room</button>
           </form>
         </div>
 
       <!-- Services -->
-        <div id="add-service">
+        <div id="add-service" class="add-new">
           <form
             id="add-service-form"
             action="{% url 'manager:add_service' %}"
+            class="add-form"
             method="POST"
             autocomplete="off"
           >
             {% csrf_token %}
-            <div class="add-service-form-group">
+            <div class="add-form-group">
               <label for="service_name">Service Name: </label>
               <input type="text" id="service_name" name="service_name" required />
             </div>
 
-            <div class="add-service-form-group">
+            <div class="add-form-group">
               <label for="service_price">Price: </label>
               <input
                 type="number"
@@ -135,7 +137,7 @@
               />
             </div>
 
-            <button class="add-service-btn" type="submit">Add Service</button>
+            <button class="add-btn" type="submit">Add Service</button>
           </form>
         </div>
 
