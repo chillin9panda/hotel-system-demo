@@ -128,6 +128,14 @@ def edit_booking(request, booking_id):
                   })
 
 
+def room_service(request):
+    return render(request, 'booking/room_service.html')
+
+
+def view_payments(request):
+    return render(request, 'booking/view_payments.html')
+
+
 def create_booking_view(request):
     sql = """
         CREATE OR REPLACE VIEW booking_view AS

@@ -67,7 +67,14 @@
       <tbody>
         {% for booking in booking_data %}
         <tr>
-          <td><a href="edit_booking/{{ booking.0 }}" class="edit-booking-link">{{ booking.0 }}</a></td>
+          <td>
+            <a id="booking_id" href="#" data-booking-id="{{ booking.0 }}" class="edit-booking-link">{{ booking.0 }}</a>
+            <div id="menu_{{ booking.0 }}" class="booking-menu" style="display: none;">
+              <a href="edit_booking/{{ booking.0 }}">Edit Booking</a>
+              <a href="room_service/{{ booking.0 }}">Room Service</a>
+              <a href="payments/{{ booking.0 }}">Payments</a>
+            </div>
+          </td>
           <td>{{ booking.1 }}</td>
           <td>{{ booking.2 }}</td>
           <td>{{ booking.3 }}</td>
@@ -193,7 +200,8 @@
   </div>
 	</div>
 
-  <script src="{% static 'booking/js/booking_main.js' %}"></script>
+  <script src="{% static 'booking/js/reception_tabs.js' %}"></script>
+  <script src="{% static 'booking/js/booking_payment_service.js' %}"></script>
 </body>
 
 </html>

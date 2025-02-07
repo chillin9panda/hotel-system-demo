@@ -1,10 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import JsonResponse
+from booking.models import Room, Services
+
 
 # Create your views here.
-from booking.models import Room, Services
-from django.contrib import messages
-
 
 def add_room(request):
     if request.method == 'POST':
