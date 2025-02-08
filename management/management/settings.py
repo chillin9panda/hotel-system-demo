@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'booking',
     'cashier',
     'payments',
+    'transaction',
 ]
 
 ASGI_APPLICATION = 'management.asgi.application'
