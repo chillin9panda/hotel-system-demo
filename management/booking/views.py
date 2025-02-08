@@ -165,8 +165,14 @@ def room_service(request, booking_id):
                   })
 
 
-def view_payments(request):
-    return render(request, 'booking/view_payments.html')
+def view_payments(request, booking_id):
+    service_payments = Service_Payments.objects.filter(booking_id=booking_id)
+    booking_payments = Booking_Payments.objects.filter(booking_id=booking_id)
+    return render(request,
+                  'booking/view_payments.html', {
+                      'service_payments': service_payments,
+                      'booking_payments': booking_payments,
+                  })
 
 
 def is_receptionist(user):

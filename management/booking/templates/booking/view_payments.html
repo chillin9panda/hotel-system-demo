@@ -6,12 +6,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Payments</title>
-  <link href="" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'booking/css/table.css' %}">
 </head>
 
 <body>
   <h1>Payments</h1>
+  <table class="listing-table">
+    <thead>
+    <tr>
+      <th>No.</th>
+      <th>Type</th>
+      <th>Service/Booking</th>
+      <th>Amount</th>
+      <th>Payments Method</th>
+      <th>Payment Status</th>
+    </tr>
+    </thead>
+    <tbody>
+      {% for payment in service_payments %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>Service</td>
+        <td>{{ payment.service_id.service_name }}</td>
+        <td>{{ payment.total_amount }}</td>
+        <td>{{ payment.payment_method }}</td>
+        <td>{{ payment.payment_status }}</td>
+      </tr>
+      {% endfor %}
 
+      {% for payment in booking_payments %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>Booking</td>
+        <td>Room Booking</td>
+        <td>{{ payment.total_amount }}</td>
+        <td>{{ payment.payment_method }}</td>
+        <td>{{ payment.payment_status }}</td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
 </body>
 
 </html>
