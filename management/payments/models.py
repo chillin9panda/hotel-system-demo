@@ -48,5 +48,13 @@ class Service_Payments(models.Model):
     payment_status = models.CharField(
         max_length=15, choices=PAYMENT_STATUS_CHOICES, default='Unpaid')
 
+    def calculate_total_amount(self):
+        service_price = self.service_id.service_price if self.service_id else 0
+        return self.quantity * service_price
+
+    def save(self, *args, **kwargs):
+        self.total_amount = self.calculate_total_amount()
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.service_payment_id
