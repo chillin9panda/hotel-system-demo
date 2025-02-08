@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Payments</title>
   <link rel="stylesheet" href="{% static 'booking/css/booking_sevice_payment.css' %}" />
-  <link rel="stylesheet" href="{% static 'booking/css/table.css' %}">
+  <link rel="stylesheet" href="{% static 'booking/css/table.css' %}" />
+  <link rel="stylesheet" href="{% static 'booking/css/view_payments.css' %}" />
 </head>
 
 <body>
@@ -20,7 +21,6 @@
         <th>Type</th>
         <th>Service/Booking</th>
         <th>Amount</th>
-        <th>Payments Method</th>
         <th>Payment Status</th>
       </tr>
       </thead>
@@ -31,11 +31,9 @@
           <td>Service</td>
           <td>{{ payment.service_id.service_name }}</td>
           <td>{{ payment.total_amount }}</td>
-          <td>{{ payment.payment_method }}</td>
           <td>{{ payment.payment_status }}</td>
         </tr>
         {% endfor %}
- booking/static/booking/css/table.css
 
         {% for payment in booking_payments %}
         <tr>
@@ -43,7 +41,6 @@
           <td>Booking</td>
           <td>Room Booking</td>
           <td>{{ payment.total_amount }}</td>
-          <td>{{ payment.payment_method }}</td>
           <td>{{ payment.payment_status }}</td>
         </tr>
         {% endfor %}
@@ -51,31 +48,53 @@
     </table>
   </div>
 
-  <div>
-        <h1>Process Payment</h1>
+  <div id="payments-section" class="process-payments" style="display: none;">
+    
+    <div class="view">
+      <div class="container">
+        <h2>Process Payment</h2>
+
+        <form method="POST">
+          {% csrf_token %}
+        <div class="form-group">
+          <label for="room">Room: </label>
+          <span>{{ room_number }}</span>
+          <label for="service">Service Name: </label>
+          <span id="process-service-name"></span>
+          <label for="amount">Amount: </label>
+          <span id="process-amount"></span>
+        </div>
+
 				<!--Payment Method-->
-				<div class="form-group">
-					<label for="payment-method">Payment Method: </label>
-					<select id="payment-method" name="payment_method" >
-						<option value="" disabled selected>Select Payment Method</option> 
-						<option value="cash">Cash</option>
-						<option value="card">Card</option>
-						<option value="mobile-banking">Mobile Banking</option>
-					</select>
-				</div> 
+			  <div class="form-group">
+  				<label for="payment-method">Payment Method: </label>
+	  			<select id="payment-method" name="payment_method" >
+		  		  <option value="" disabled selected>Select Payment Method</option> 
+			  	  <option value="cash">Cash</option>
+				  	<option value="card">Card</option>
+				    <option value="mobile-banking">Mobile Banking</option>
+  			  </select>
+	  	  </div> 
 		
-				<!--Dynamic Mobile Banking Field-->
-				<div id="mobile-banking-fields" style="display: none;">
-					<div class="form-group">
-						<label for="bank-name">Bank Name: </label>
-						<input type="text" id="bank-name" placeholder="Enter Bank Name"/>
-					</div> 
-					<div class="form-group">
-						<label for="transaction-id">Transaction ID: </label>
-						<input type="text" id="transaction-id" placeholder="Enter Transaction ID"/>
-					</div>
-				</div>
+				  <!--Dynamic Mobile Banking Field-->
+		  	<div id="mobile-banking-fields" style="display: none;">
+			  	<div class="form-group">
+				  	<label for="bank-name">Bank Name: </label>
+					  <input type="text" id="bank-name" placeholder="Enter Bank Name"/>
+  				</div>
+
+  			  <div class="form-group">
+	  				<label for="transaction-id">Transaction ID: </label>
+		  			<input type="text" id="transaction-id" placeholder="Transaction ID"/>
+			  	</div>
+			  </div>
+
+        <button class="submit-btn" type="submit">Pay</button>
+       </form>
+      </div>
+    </div>
   </div>
+  <script src="{% static 'booking/js/payments.js' %}"></script>
 </body>
 
 </html>

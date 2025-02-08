@@ -1,0 +1,11 @@
+.process-payments {
+  margin-top: 20px;
+}
+
+.payments-table {
+  margin-bottom: 20px;
+}
+
+.listing-table tbody tr {
+  cursor: pointer;
+}

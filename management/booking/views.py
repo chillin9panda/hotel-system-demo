@@ -168,10 +168,14 @@ def room_service(request, booking_id):
 def view_payments(request, booking_id):
     service_payments = Service_Payments.objects.filter(booking_id=booking_id)
     booking_payments = Booking_Payments.objects.filter(booking_id=booking_id)
+
+    bookings = Booking.objects.get(booking_id=booking_id)
+
     return render(request,
                   'booking/view_payments.html', {
                       'service_payments': service_payments,
                       'booking_payments': booking_payments,
+                      'room_number': bookings.room,
                   })
 
 
