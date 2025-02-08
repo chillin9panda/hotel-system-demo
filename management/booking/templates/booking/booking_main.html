@@ -19,7 +19,6 @@
 					<li><a href="#" id="home-link">Home</a></li>
 					<li><a href="#" id="book-room-link">Book Room</a></li>
           <li><a href="#" id="bookings-link">Bookings</a></li>
-          <li><a href="#" id="payments-link">Payment</a></li>
 					<li><a href="#" id="view-rooms-link">Rooms</a></li>
 					<!--Add notitfication icon-->
 					<a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
@@ -144,35 +143,6 @@
         {% endfor %}
       {% endif %}
     </div>
-  </div>
-
-  <!--Payment-->
-  <div id="payments-section" class="payment" style="display: none;">
-
-    <h1>Payments</h1>
-				<!--Payment Method-->
-				<div class="form-group">
-					<label for="payment-method">Payment Method: </label>
-					<select id="payment-method" name="payment_method" >
-						<option value="" disabled selected>Select Payment Method</option> 
-						<option value="cash">Cash</option>
-						<option value="card">Card</option>
-						<option value="mobile-banking">Mobile Banking</option>
-					</select>
-				</div> 
-		
-				<!--Dynamic Mobile Banking Field-->
-				<div id="mobile-banking-fields" style="display: none;">
-					<div class="form-group">
-						<label for="bank-name">Bank Name: </label>
-						<input type="text" id="bank-name" placeholder="Enter Bank Name"/>
-					</div> 
-					<div class="form-group">
-						<label for="transaction-id">Transaction ID: </label>
-						<input type="text" id="transaction-id" placeholder="Enter Transaction ID"/>
-					</div> views.py
-				</div>
-
   </div>
 
   <!--View Rooms-->

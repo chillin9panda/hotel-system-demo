@@ -6,47 +6,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Payments</title>
+  <link rel="stylesheet" href="{% static 'booking/css/booking_sevice_payment.css' %}" />
   <link rel="stylesheet" href="{% static 'booking/css/table.css' %}">
 </head>
 
 <body>
   <h1>Payments</h1>
-  <table class="listing-table">
-    <thead>
-    <tr>
-      <th>No.</th>
-      <th>Type</th>
-      <th>Service/Booking</th>
-      <th>Amount</th>
-      <th>Payments Method</th>
-      <th>Payment Status</th>
-    </tr>
-    </thead>
-    <tbody>
-      {% for payment in service_payments %}
+  <div class="payments-table">
+    <table class="listing-table">
+      <thead>
       <tr>
-        <td>{{ forloop.counter }}</td>
-        <td>Service</td>
-        <td>{{ payment.service_id.service_name }}</td>
-        <td>{{ payment.total_amount }}</td>
-        <td>{{ payment.payment_method }}</td>
-        <td>{{ payment.payment_status }}</td>
+        <th>No.</th>
+        <th>Type</th>
+        <th>Service/Booking</th>
+        <th>Amount</th>
+        <th>Payments Method</th>
+        <th>Payment Status</th>
       </tr>
-      {% endfor %}
+      </thead>
+      <tbody>
+        {% for payment in service_payments %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>Service</td>
+          <td>{{ payment.service_id.service_name }}</td>
+          <td>{{ payment.total_amount }}</td>
+          <td>{{ payment.payment_method }}</td>
+          <td>{{ payment.payment_status }}</td>
+        </tr>
+        {% endfor %}
+ booking/static/booking/css/table.css
 
-      {% for payment in booking_payments %}
-      <tr>
-        <td>{{ forloop.counter }}</td>
-        <td>Booking</td>
-        <td>Room Booking</td>
-        <td>{{ payment.total_amount }}</td>
-        <td>{{ payment.payment_method }}</td>
-        <td>{{ payment.payment_status }}</td>
-      </tr>
-      {% endfor %}
+        {% for payment in booking_payments %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>Booking</td>
+          <td>Room Booking</td>
+          <td>{{ payment.total_amount }}</td>
+          <td>{{ payment.payment_method }}</td>
+          <td>{{ payment.payment_status }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
-    </tbody>
-  </table>
+  <div>
+        <h1>Process Payment</h1>
+				<!--Payment Method-->
+				<div class="form-group">
+					<label for="payment-method">Payment Method: </label>
+					<select id="payment-method" name="payment_method" >
+						<option value="" disabled selected>Select Payment Method</option> 
+						<option value="cash">Cash</option>
+						<option value="card">Card</option>
+						<option value="mobile-banking">Mobile Banking</option>
+					</select>
+				</div> 
+		
+				<!--Dynamic Mobile Banking Field-->
+				<div id="mobile-banking-fields" style="display: none;">
+					<div class="form-group">
+						<label for="bank-name">Bank Name: </label>
+						<input type="text" id="bank-name" placeholder="Enter Bank Name"/>
+					</div> 
+					<div class="form-group">
+						<label for="transaction-id">Transaction ID: </label>
+						<input type="text" id="transaction-id" placeholder="Enter Transaction ID"/>
+					</div>
+				</div>
+  </div>
 </body>
 
 </html>
