@@ -3,9 +3,9 @@ from datetime import timedelta
 
 # Create your models here.
 PAYMENT_STATUS_CHOICES = [
-        ('Unpaid', 'Unpaid'),
-        ('Paid', 'Paid'),
-        ('Cancelled', 'Cancelled'),
+    ('Unpaid', 'Unpaid'),
+    ('Paid', 'Paid'),
+    ('Cancelled', 'Cancelled'),
 ]
 
 
@@ -14,7 +14,6 @@ class Booking_Payments(models.Model):
     booking_id = models.ForeignKey(
         'booking.Booking', on_delete=models.CASCADE, related_name='payments')
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    bank_name = models.CharField(max_length=100, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     payment_status = models.CharField(
         max_length=15, choices=PAYMENT_STATUS_CHOICES, default='Unpaid')
