@@ -24,7 +24,7 @@ class Room(models.Model):
         max_length=15, choices=ROOM_STATUS_CHOICES, default='Available')
 
     def __str__(self):
-        return f"Room {self.room_number}"
+        return self.room_number
 
     class Meta:
         ordering = ['room_number']  # sort by room number
