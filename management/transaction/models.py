@@ -42,7 +42,7 @@ class Reception(models.Model):
 
     def save(self, *args, **kwargs):
         self.clean()
-        super.save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.transaction_id
