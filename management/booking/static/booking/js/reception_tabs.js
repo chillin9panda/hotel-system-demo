@@ -29,12 +29,6 @@ function showBookRoom() {
   document.getElementById('book-room-section').style.display = 'block';
 }
 
-//shoe payments section
-function showPayment() {
-  hideAllSections();
-  document.getElementById('payments-section').style.display = 'block';
-}
-
 //show view rooms section
 function showViewRooms() {
   hideAllSections();
@@ -55,7 +49,6 @@ function hideAllSections() {
   document.getElementById('book-room-section').style.display = 'none';  // Hide Book Room section
   document.getElementById('view-rooms-section').style.display = 'none'; // Hide View Rooms section
   document.getElementById('bookings-section').style.display = 'none';
-  document.getElementById('payments-section').style.display = 'none';
 
 
   resetForm();
@@ -94,30 +87,6 @@ document.getElementById(bookings_link).addEventListener('click', function(event)
   saveActiveSection(bookings_link);
 });
 
-const payments_link = 'payments-link';
-document.getElementById(payments_link).addEventListener('click', function(event) {
-  event.preventDefault();
-  showPayment();
-  highlightActiveLink(payments_link);
-  saveActiveSection(payments_link);
-});
-
-
-//Dynamic section for mobile banking payment method
-document.getElementById("payment-method").addEventListener("change", function() {
-  const paymentMethod = this.value;
-  const mobileBankingFields = document.getElementById("mobile-banking-fields");
-
-  if ("mobile-banking" === paymentMethod) {
-    mobileBankingFields.style.display = "block";
-  } else {
-    mobileBankingFields.style.display = "none";
-  }
-
-  document.getElementById("bank-name").value = "";
-  document.getElementById("transaction-id").value = "";
-});
-
 //Highlight Active tab
 function highlightActiveLink(linkId) {
   document.querySelectorAll('.nav-links li a').forEach(link => link.classList.remove('active'));
@@ -140,7 +109,6 @@ window.onload = function() {
   if (activeSection === home_link) showHome();
   else if (activeSection === bookings_link) showBookings();
   else if (activeSection === book_room_link) showBookRoom();
-  else if (activeSection === payments_link) showPayment();
   else if (activeSection === view_rooms_link) showViewRooms();
 };
 
