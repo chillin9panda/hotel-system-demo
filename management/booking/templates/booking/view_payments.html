@@ -26,7 +26,7 @@
       </thead>
       <tbody>
         {% for payment in service_payments %}
-        <tr>
+        <tr data-service-payment-id="{{ payment.payment_id }}">
           <td>{{ forloop.counter }}</td>
           <td>Service</td>
           <td>{{ payment.service_id.service_name }}</td>
@@ -36,7 +36,7 @@
         {% endfor %}
 
         {% for payment in booking_payments %}
-        <tr>
+        <tr data-booking-payment-id="{{ payment.payment_id }}">
           <td>{{ forloop.counter }}</td>
           <td>Booking</td>
           <td>Room Booking</td>
@@ -54,16 +54,23 @@
       <div class="container">
         <h2>Process Payment</h2>
 
-        <form method="POST">
+        <form action="{% url 'transaction:reception_payment' %}" method="POST">
           {% csrf_token %}
         <div class="form-group">
           <label for="room">Room: </label>
           <span>{{ room_number }}</span>
           <label for="service">Service Name: </label>
-          <span id="process-service-name"></span>
+          <span id="service-name"></span>
           <label for="amount">Amount: </label>
-          <span id="process-amount"></span>
+          <span id="amount"></span>
         </div>
+
+        <!--Hidden Inputs-->
+        <input type="hidden" id="booking-payment-id" name="booking_payment_id" value="">
+        <input type="hidden" id="service-payment-id" name="service_payment_id" value="">
+        <input type="hidden" id="payment-id" name="payment_id" value="">
+        <input type="hidden" id="payment-amount" name="payed_amount" value="">
+        <input type="hidden" id="payment-type" name="payment_type" value="">
 
 				<!--Payment Method-->
 			  <div class="form-group">
@@ -82,11 +89,6 @@
 				  	<label for="bank-name">Bank Name: </label>
 					  <input type="text" id="bank-name" placeholder="Enter Bank Name"/>
   				</div>
-
-  			  <div class="form-group">
-	  				<label for="transaction-id">Transaction ID: </label>
-		  			<input type="text" id="transaction-id" placeholder="Transaction ID"/>
-			  	</div>
 			  </div>
 
         <button class="submit-btn" type="submit">Pay</button>

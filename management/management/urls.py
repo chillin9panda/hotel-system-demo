@@ -9,5 +9,6 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('booking/', include('booking.urls')),
     path('manager/', include('manager.urls')),
+    path('transaction/', include('transaction.urls')),
     path('', lambda request: redirect('login')),
 ]
