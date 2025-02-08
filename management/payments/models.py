@@ -21,8 +21,6 @@ class Booking_Payments(models.Model):
     booking_id = models.ForeignKey(
         'booking.Booking', on_delete=models.CASCADE, related_name='payments')
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    payment_method = models.CharField(
-        max_length=20, choices=PAYMENT_METHOD, blank=True)
     bank_name = models.CharField(max_length=100, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     payment_status = models.CharField(
@@ -66,8 +64,6 @@ class Service_Payments(models.Model):
         'booking.services', on_delete=models.CASCADE, related_name='service')
     quantity = models.PositiveIntegerField(default=1)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    payment_method = models.CharField(
-        max_length=20, choices=PAYMENT_METHOD, blank=True)
     ordered_on = models.DateTimeField(auto_now_add=True)
     payment_status = models.CharField(
         max_length=15, choices=PAYMENT_STATUS, default='Unpaid')
