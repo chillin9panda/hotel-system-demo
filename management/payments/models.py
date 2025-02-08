@@ -2,21 +2,14 @@ from django.db import models
 from datetime import timedelta
 
 # Create your models here.
-
-
-class Booking_Payments(models.Model):
-    PAYMENT_METHOD = [
-        ('Cash', 'Cash'),
-        ('Card', 'Card'),
-        ('Mobile Banking', 'Mobile Banking'),
-    ]
-
-    PAYMENT_STATUS = [
+PAYMENT_STATUS_CHOICES = [
         ('Unpaid', 'Unpaid'),
         ('Paid', 'Paid'),
         ('Cancelled', 'Cancelled'),
-    ]
+]
 
+
+class Booking_Payments(models.Model):
     payment_id = models.AutoField(primary_key=True)
     booking_id = models.ForeignKey(
         'booking.Booking', on_delete=models.CASCADE, related_name='payments')
@@ -24,7 +17,7 @@ class Booking_Payments(models.Model):
     bank_name = models.CharField(max_length=100, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     payment_status = models.CharField(
-        max_length=15, choices=PAYMENT_STATUS, default='Unpaid')
+        max_length=15, choices=PAYMENT_STATUS_CHOICES, default='Unpaid')
 
     def days_stayed(self):
         if self.booking_id.check_out_date and self.booking_id.check_in_date:
@@ -45,18 +38,6 @@ class Booking_Payments(models.Model):
 
 
 class Service_Payments(models.Model):
-    PAYMENT_METHOD = [
-        ('Cash', 'Cash'),
-        ('Card', 'Card'),
-        ('Mobile Banking', 'Mobile Banking'),
-    ]
-
-    PAYMENT_STATUS = [
-        ('Unpaid', 'Unpaid'),
-        ('Paid', 'Paid'),
-        ('Cancelled', 'Cancelled'),
-    ]
-
     payment_id = models.AutoField(primary_key=True)
     booking_id = models.ForeignKey(
         'booking.Booking', on_delete=models.CASCADE, related_name='service_payments')
@@ -66,7 +47,7 @@ class Service_Payments(models.Model):
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     ordered_on = models.DateTimeField(auto_now_add=True)
     payment_status = models.CharField(
-        max_length=15, choices=PAYMENT_STATUS, default='Unpaid')
+        max_length=15, choices=PAYMENT_STATUS_CHOICES, default='Unpaid')
 
     def __str__(self):
         return self.service_payment_id

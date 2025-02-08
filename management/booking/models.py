@@ -45,9 +45,9 @@ class Guest(models.Model):
 
 class Booking(models.Model):
     BOOKING_STATUS_CHOICES = [
-        ('Confirmed', 'Confirmed'),
+        ('Active', 'Active'),
         ('Pending', 'Pending'),
-        ('Cancelled', 'Cancelled'),
+        ('Checked-out', 'Checked-out'),
     ]
     booking_id = models.AutoField(primary_key=True)
     room = models.ForeignKey(
@@ -58,7 +58,7 @@ class Booking(models.Model):
     check_out_date = models.DateField()
     booking_date = models.DateTimeField(default=datetime.datetime.now)
     status = models.CharField(
-        max_length=10, choices=BOOKING_STATUS_CHOICES, default='Pending')
+        max_length=15, choices=BOOKING_STATUS_CHOICES, default='Pending')
 
     def __str__(self):
         return f"Booking {self.booking_id}: for {self.guest.first_name} {
