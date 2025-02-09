@@ -83,6 +83,15 @@
             <div id="status-menu_{{ booking.0 }}" class="booking-menu" style="display: none;">
               <a href="{% url 'booking:check_in' booking.0 %}">Check-In</a>
               <a href="{% url 'booking:check_out' booking.0 %}">Check-Out</a>
+              {% if messages %}
+                <div id="checkout-message-container" style="display: none;">
+                  {% for message in messages %}
+                    {% if "check_out" in message.tags %}
+                      <span class="alert-message" data-type="{{ message.tags }}">{{ message }}</span> 
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
             </div>
           </td>
         </tr>
@@ -179,6 +188,8 @@
 
   <script src="{% static 'booking/js/reception_tabs.js' %}"></script>
   <script src="{% static 'booking/js/booking_payment_service.js' %}"></script>
+  <script src="{% static 'booking/js/booking_alerts.js' %}">
+  </script>
 </body>
 
 </html>

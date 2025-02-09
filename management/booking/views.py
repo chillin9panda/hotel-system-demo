@@ -195,6 +195,14 @@ def check_in(request, booking_id):
 def check_out(request, booking_id):
     booking = get_object_or_404(Booking, booking_id=booking_id)
 
+    payment_record = Booking_Payments.objects.filter(
+        booking_id=booking_id).first()
+
+    if not payment_record or payment_record.payment_status != "Paid":
+        messages.error(
+            request, "Check-Out cancelled. Pending Payments Found.", extra_tags="check_out")
+        return redirect("booking:home")
+
     if booking.status == checked_in:
         booking.status = checked_out
         booking.save()
