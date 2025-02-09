@@ -11,6 +11,9 @@ from django.utils import timezone
 
 # Create your views here.
 
+checked_in = "Checked-In"
+checked_out = "Checked-Out"
+
 
 def book_room(request):
     if request.method == 'POST':
@@ -177,6 +180,30 @@ def view_payments(request, booking_id):
                       'booking_payments': booking_payments,
                       'room_number': bookings.room,
                   })
+
+
+def check_in(request, booking_id):
+    booking = get_object_or_404(Booking, booking_id=booking_id)
+
+    if booking.status != checked_in:
+        booking.status = checked_in
+        booking.save()
+
+    return redirect("booking:home")
+
+
+def check_out(request, booking_id):
+    booking = get_object_or_404(Booking, booking_id=booking_id)
+
+    if booking.status == checked_in:
+        booking.status = checked_out
+        booking.save()
+
+        if booking.room:
+            booking.room.room_status = 'Available'
+            booking.room.save()
+
+    return redirect("booking:home")
 
 
 def is_receptionist(user):

@@ -12,6 +12,8 @@ urlpatterns = [
          views.room_service, name='room_service'),
     path('payments/<int:booking_id>/',
          views.view_payments, name='payments'),
+    path('check-in/<int:booking_id>', views.check_in, name='check_in'),
+    path('check-out/<int:booking_id>', views.check_out, name='check_out'),
 
     # Sql Views URL removed later
     path('create_booking_view/', views.create_booking_view,

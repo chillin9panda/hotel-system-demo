@@ -8,6 +8,9 @@ from .models import Reception
 
 
 def process_payment(request):
+    checked_in = "Checked-In"
+    checked_out = "Checked-Out"
+
     if request.method == "POST":
         payment_type = request.POST.get("payment_type")
         payment_id = request.POST.get("payment_id")
@@ -43,8 +46,8 @@ def process_payment(request):
         payment_record.payment_status = "Paid"
         payment_record.save()
 
-        if booking and booking.status != "Active":
-            booking.status = "Active"
+        if booking and booking.status != checked_in:
+            booking.status = checked_in
             booking.save()
 
         return redirect(request.META.get("HTTP_REFERER", "booking:payments"))

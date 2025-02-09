@@ -45,9 +45,9 @@ class Guest(models.Model):
 
 class Booking(models.Model):
     BOOKING_STATUS_CHOICES = [
-        ('Active', 'Active'),
+        ('Checked-In', 'Checked-In'),
         ('Pending', 'Pending'),
-        ('Checked-out', 'Checked-out'),
+        ('Checked-Out', 'Checked-Out'),
     ]
     booking_id = models.AutoField(primary_key=True)
     room = models.ForeignKey(

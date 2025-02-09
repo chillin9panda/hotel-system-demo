@@ -57,7 +57,7 @@
     <table class="listing-table">
       <thead>
         <tr>
-          <th>Booking Id</th>
+          <th>Booking</th>
           <th>First Name</th>
           <th>Phone Number</th>
           <th>Room Number</th>
@@ -70,9 +70,9 @@
           <td>
             <a id="booking_id" href="#" data-booking-id="{{ booking.0 }}" class="edit-booking-link">{{ booking.0 }}</a>
             <div id="booking-menu_{{ booking.0 }}" class="booking-menu" style="display: none;">
-              <a href="edit_booking/{{ booking.0 }}">Edit Booking</a>
-              <a href="room_service/{{ booking.0 }}">Room Service</a>
-              <a href="payments/{{ booking.0 }}">Payments</a>
+              <a href=" {% url 'booking:edit_booking' booking.0 %}">Edit Booking</a>
+              <a href=" {% url 'booking:room_service' booking.0 %}">Room Service</a>
+              <a href=" {% url 'booking:payments' booking.0 %}">Payments</a>
             </div>
           </td>
           <td>{{ booking.1 }}</td>
@@ -81,8 +81,8 @@
           <td>
             <a href="" data-booking-id= "{{ booking.0 }}" class="booking-status-link">{{ booking.4 }}</a>
             <div id="status-menu_{{ booking.0 }}" class="booking-menu" style="display: none;">
-              <a href="">Check-In</a>
-              <a href="">Check-Out</a>
+              <a href="{% url 'booking:check_in' booking.0 %}">Check-In</a>
+              <a href="{% url 'booking:check_out' booking.0 %}">Check-Out</a>
             </div>
           </td>
         </tr>
