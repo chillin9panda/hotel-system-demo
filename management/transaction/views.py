@@ -47,5 +47,5 @@ def process_payment(request):
             booking.status = "Active"
             booking.save()
 
-        return JsonResponse({"message": "Payment processed Successfully"})
+        return redirect(request.META.get("HTTP_REFERER", "booking:payments"))
     return JsonResponse({"error": "Invalid request"}, status=400)
