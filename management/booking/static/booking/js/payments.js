@@ -1,3 +1,4 @@
+// payment table
 document.addEventListener("DOMContentLoaded", function() {
   //Seect all rows  
   document.querySelectorAll(".listing-table tbody tr").forEach(row => {
