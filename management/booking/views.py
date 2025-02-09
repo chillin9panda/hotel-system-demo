@@ -88,7 +88,7 @@ def edit_booking(request, booking_id):
 
         if check_out_str:
             check_out_date = datetime.strptime(
-                check_out_str, "%y-%m-%d").date()
+                check_out_str, "%Y-%m-%d").date()
             booking.check_out_date = check_out_date
 
         if check_in_str:
@@ -109,21 +109,22 @@ def edit_booking(request, booking_id):
         booking.save()
 
         # update payment
-        payment = get_object_or_404(Booking_Payments, booking_id=booking)
+        payment = Booking_Payments.objects.filter(booking_id=booking).first()
 
-        check_in_date = booking.check_in_date
-        check_out_date = booking.check_out_date
+        if payment:
+            check_in_date = booking.check_in_date
+            check_out_date = booking.check_out_date
 
-        if check_in_date and check_out_date:
-            days_stayed = (check_out_date - check_in_date).days
-            days_stayed = max(days_stayed, 1)
-            room_price = booking.room.price
-            total_amount = days_stayed * room_price
+            if check_in_date and check_out_date:
+                days_stayed = (check_out_date - check_in_date).days
+                days_stayed = max(days_stayed, 1)
+                room_price = booking.room.price
+                total_amount = days_stayed * room_price
 
-            payment.total_amount = total_amount
-            payment.save()
+                payment.total_amount = total_amount
+                payment.save()
 
-        return redirect('booking:home')
+        return redirect('booking:edit_booking', booking_id=booking_id)
 
     return render(request,
                   'booking/edit_booking.html', {

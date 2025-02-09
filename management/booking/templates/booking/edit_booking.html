@@ -17,38 +17,38 @@
       <form id="form" method="POST">
         {% csrf_token %}
         <div class="form-group">
-          <label for="bookingId">Booking Id: </label>
+          <label>Booking: </label>
           <span>{{ booking.booking_id }}</span>
         </div>
 
         <div class="form-group">
-          <label for="Name">Name: </label>
+          <label>Name: </label>
           <span>{{ booking.guest.first_name }} {{booking.guest.last_name}}</span>
         </div>
 
         <div class="form-group">
-          <label for="phoneNumber">Phone Number: </label>
+          <label>Phone Number: </label>
           <span>{{ booking.guest.phone_number }}</span>
         </div>
 
         <div class="form-group">
-          <label for="email">Email: </label>
+          <label>Email: </label>
           <span>{{ booking.guest.email }}</span>
         </div>
 
 
        <div class="form-group">
-          <label for="checkInDate">Check-In-Date: </label>
-          <input type="date" name="check_in_date" value="{{ booking.check_in_date }}">
-        </div>        
-
-        <div class="form-group">
-          <label for="checkOutDate">Check-Out-Date: </label>
-          <input type="date" name="check_out_date" value="{{ booking.check_out_date }}">
+          <label>Check-In-Date: </label>
+          <input type="date" name="check_in_date" value="{{ booking.check_in_date|date:'Y-m-d' }}">
         </div>
 
         <div class="form-group">
-          <label for="roomNumber">Booking Id: </label>
+          <label>Check-Out-Date: </label>
+          <input type="date" name="check_out_date" value="{{ booking.check_out_date|date:'Y-m-d' }}">
+        </div>
+
+        <div class="form-group">
+          <label>Room Number: </label>
           <select id="room-number" name="room_number">
             <option value="" disable selected>Select Room</option>
             {% for room in available_rooms %}
@@ -62,7 +62,7 @@
       </form>
     </div>
   </div>
-  <script src="{% static 'booking/js/booking_sevice_payment.js' %}"></script>
+  <script src="{% static 'booking/js/booking_payment_service.js' %}"></script>
 </body>
 
 </html>
