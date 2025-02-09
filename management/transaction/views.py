@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.http import JsonResponse
 from payments.models import Booking_Payments, Service_Payments
 from booking.models import Booking
@@ -9,7 +9,6 @@ from .models import Reception
 
 def process_payment(request):
     checked_in = "Checked-In"
-    checked_out = "Checked-Out"
 
     if request.method == "POST":
         payment_type = request.POST.get("payment_type")
