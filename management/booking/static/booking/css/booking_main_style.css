@@ -237,20 +237,33 @@
 
 
 /*Bookings table links*/
+.booking-status-link,
 .edit-booking-link {
-  color: #007bff;
+  color: #3a7ca5;
   text-decoration: none;
   font-weight: bold;
   padding: 8px 12px;
-  transition: color 0.3s ease, text-decoration 0.3 ease;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
+.menu-group:hover,
+.booking-status-link:hover,
 .edit-booking-link:hover {
   color: #0056b3;
   text-decoration: underline;
   cursor: pointer;
 }
 
+.menu-group:hover,
+.booking-status-link:active,
 .edit-booking-link:active {
   color: #003f7f;
+}
+
+.menu-group {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  padding: 8px 12px;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }

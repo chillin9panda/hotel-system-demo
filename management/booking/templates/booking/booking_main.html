@@ -70,9 +70,9 @@
           <td>
             <a id="booking_id" href="#" data-booking-id="{{ booking.0 }}" class="edit-booking-link">{{ booking.0 }}</a>
             <div id="booking-menu_{{ booking.0 }}" class="booking-menu" style="display: none;">
-              <a href=" {% url 'booking:edit_booking' booking.0 %}">Edit Booking</a>
-              <a href=" {% url 'booking:room_service' booking.0 %}">Room Service</a>
-              <a href=" {% url 'booking:payments' booking.0 %}">Payments</a>
+              <a class="menu-group"  href=" {% url 'booking:edit_booking' booking.0 %}">Edit Booking</a>
+              <a class="menu-group"  href=" {% url 'booking:room_service' booking.0 %}">Room Service</a>
+              <a class="menu-group"  href=" {% url 'booking:payments' booking.0 %}">Payments</a>
             </div>
           </td>
           <td>{{ booking.1 }}</td>
@@ -81,8 +81,9 @@
           <td>
             <a href="" data-booking-id= "{{ booking.0 }}" class="booking-status-link">{{ booking.4 }}</a>
             <div id="status-menu_{{ booking.0 }}" class="booking-menu" style="display: none;">
-              <a href="{% url 'booking:check_in' booking.0 %}">Check-In</a>
-              <a href="{% url 'booking:check_out' booking.0 %}">Check-Out</a>
+              <a class="menu-group" href="{% url 'booking:check_in' booking.0 %}">Check-In</a>
+              <a class="menu-group" href="{% url 'booking:check_out' booking.0 %}">Check-Out</a>
+
               {% if messages %}
                 <div id="checkout-message-container" style="display: none;">
                   {% for message in messages %}
@@ -92,6 +93,7 @@
                   {% endfor %}
                 </div>
               {% endif %}
+
             </div>
           </td>
         </tr>
@@ -187,7 +189,7 @@
 	</div>
 
   <script src="{% static 'booking/js/reception_tabs.js' %}"></script>
-  <script src="{% static 'booking/js/booking_payment_service.js' %}"></script>
+  <script src="{% static 'booking/js/booking_table_menu.js' %}"></script>
   <script src="{% static 'booking/js/booking_alerts.js' %}">
   </script>
 </body>
