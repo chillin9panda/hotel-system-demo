@@ -69,7 +69,7 @@
         <tr>
           <td>
             <a id="booking_id" href="#" data-booking-id="{{ booking.0 }}" class="edit-booking-link">{{ booking.0 }}</a>
-            <div id="menu_{{ booking.0 }}" class="booking-menu" style="display: none;">
+            <div id="booking-menu_{{ booking.0 }}" class="booking-menu" style="display: none;">
               <a href="edit_booking/{{ booking.0 }}">Edit Booking</a>
               <a href="room_service/{{ booking.0 }}">Room Service</a>
               <a href="payments/{{ booking.0 }}">Payments</a>
@@ -78,7 +78,13 @@
           <td>{{ booking.1 }}</td>
           <td>{{ booking.2 }}</td>
           <td>{{ booking.3 }}</td>
-          <td>{{ booking.4 }}</td>
+          <td>
+            <a href="" data-booking-id= "{{ booking.0 }}" class="booking-status-link">{{ booking.4 }}</a>
+            <div id="status-menu_{{ booking.0 }}" class="booking-menu" style="display: none;">
+              <a href="">Check-In</a>
+              <a href="">Check-Out</a>
+            </div>
+          </td>
         </tr>
         {% endfor %}
       </tbody>

@@ -57,11 +57,11 @@
         <form action="{% url 'transaction:reception_payment' %}" method="POST">
           {% csrf_token %}
         <div class="form-group">
-          <label for="room">Room: </label>
+          <label>Room: </label>
           <span>{{ room_number }}</span>
-          <label for="service">Service Name: </label>
+          <label>Service Name: </label>
           <span id="service-name"></span>
-          <label for="amount">Amount: </label>
+          <label>Amount: </label>
           <span id="amount"></span>
         </div>
 
