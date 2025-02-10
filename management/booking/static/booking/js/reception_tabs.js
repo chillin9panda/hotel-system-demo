@@ -134,6 +134,10 @@ function validateAndSubmitSearch(icon) {
 document.addEventListener("DOMContentLoaded", function() {
   document.querySelectorAll(".nav-links a").forEach(link => {
     link.addEventListener("click", function(event) {
+      if (link.classList.contains("logout-btn")) {
+        return;
+      }
+
       event.preventDefault();
 
       if (window.location.pathname !== "/booking/") {
