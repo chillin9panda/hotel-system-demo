@@ -4,15 +4,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Manager</title>
-    <link
-      rel="stylesheet"
-      href="{% static 'manager/css/manager_main_style.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'manager/css/manager_reception_style.css' %}"
-    />
+
+    <link rel="stylesheet" href="{% static 'manager/css/manager_main_style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'manager/css/manager_reception_style.css' %}" />
   </head>
   <body>
     <header class="nav-bar">
@@ -60,6 +56,7 @@
       <!--Employee-->
       <div id="employees-section" class="employee-manage" style="display: none">
         <h1>Employee</h1>
+        <a href="{% url 'manager:add_employee' %}">Add Employee</a>
       </div>
 
       <!--Receptions-->

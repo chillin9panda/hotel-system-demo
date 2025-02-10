@@ -71,7 +71,7 @@ class Employee(AbstractBaseUser):
     role = models.CharField(max_length=30, choices=ROLE_CHOICES)
     date_joined = models.DateTimeField(default=timezone.now)
     # username = models.CharField(unique=True, max_length=50)
-    password = models.CharField(max_length=255)
+    password = models.CharField(max_length=255, default='temp@123')
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

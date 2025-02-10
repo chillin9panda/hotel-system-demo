@@ -1,9 +1,32 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from booking.models import Room, Services
+from login.models import Employee
+from .forms import EmployeeForm
 
 
 # Create your views here.
+
+def view_employees(request):
+    employees = Employee.objects
+
+    return render(request, 'manager/manager_main.html')
+
+
+def add_employee(request):
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success_url')
+    else:
+        form = EmployeeForm()
+
+    return render(request,
+                  'manager/add_employee.html', {
+                      'form': form,
+                  })
+
 
 def add_room(request):
     if request.method == 'POST':
