@@ -1,0 +1,33 @@
+.search-result {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: separate;
+  border-spacing: 15px;
+  text-align: left;
+}
+
+.search-result th {
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.search-result td {
+  padding: 10px;
+  background-color: #f9f9f9;
+  text-align: center;
+  font-size: 16px;
+}
+
+.search-result tr:hover td {
+  background-color: #ffffe6;
+}
+
+
+.no-result {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #d95341;
+  margin-top: 20px;
+}

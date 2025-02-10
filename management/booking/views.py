@@ -215,6 +215,21 @@ def check_out(request, booking_id):
     return redirect("booking:home")
 
 
+def search_booking(request):
+    phone_number = request.GET.get('phone_number', '')
+
+    if phone_number:
+        bookings = Booking.objects.filter(
+            guest__phone_number=phone_number) if phone_number else None
+    else:
+        bookings = Booking.objects.all()
+    return render(request,
+                  'booking/booking_main.html', {
+                      'bookings': bookings,
+                      'search_query': phone_number,
+                  })
+
+
 def is_receptionist(user):
     return user.role == 'Receptionist'
 
