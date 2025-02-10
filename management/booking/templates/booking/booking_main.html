@@ -9,29 +9,13 @@
 	<link rel="stylesheet" href="{% static 'booking/css/booking_main_style.css' %}" />
   <link rel="stylesheet" href="{% static 'booking/css/table.css' %}" />
   <link rel="stylesheet" href="{% static 'booking/css/search-results.css' %}">
-  <link rel="stylesheet" href="{% static 'css/search_bar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/nav-bar.css' %}">
 </head>
 
 <body>
 	<header class="nav-bar">
 		<div class="container">
-			<h1>Reception</h1>
-
-      <form action="{% url 'booking:search_booking' %}" method="GET">
-        <div class="search-container">
-          <div class="search-bar-container">
-            <input type="text" name="phone_number" placeholder="Search Booking..." required />
-          </div>
-
-          <div class="search-icon-container">
-            <img src="{% static 'icons/search-icon/icons8-search-50.svg' %}" 
-              alt="Search Icon" 
-              id="search" 
-              class="search-icon" 
-              onclick="validateAndSubmitSearch(this)">
-          </div>
-        </div>
-      </form>
+			<h1 class="logo">Reception</h1>
 
 			<nav>
 				<ul class="nav-links">
@@ -40,9 +24,38 @@
           <li><a href="#" id="bookings-link">Bookings</a></li>
 					<li><a href="#" id="view-rooms-link">Rooms</a></li>
 					<!--Add notitfication icon-->
-					<a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
 				</ul>
 			</nav>
+
+      <form action="{% url 'booking:search_booking' %}" method="GET">
+        <div class="search-container" id="search-container">
+          <div class="search-bar-container">
+            <input type="text" name="phone_number" placeholder="Search Booking..." required id="search-bar" class="search-bar" />
+          </div>
+
+          <div class="search-icon-container">
+              <img src="{% static 'icons/search-icon/icons8-search-50.svg' %}" 
+              alt="Search Icon" 
+              id="search" 
+              class="search-icon" 
+              onclick="validateAndSubmitSearch(this)">
+          </div>
+        </div>
+      </form>
+
+        <div class="settings-dropdown">
+          <img src="{% static 'icons/settings-icon/icons8-settings-50.svg' %}" 
+            alt="Settings Icon" 
+            class="settings-icon"
+            onclick="toggleDropdown()"
+          >
+
+          <div class='dropdown-menu' id="dropdown-menu">
+            <a href="#">Change Password</a>
+            <hr>
+					  <a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
+          </div>
+        </div>
 		</div>
 	</header>
 
@@ -243,6 +256,7 @@
   </div>
 	</div>
 
+  <script src="{% static 'js/nav-bar-toggles.js' %}"></script>
   <script src="{% static 'booking/js/reception_tabs.js' %}"></script>
   <script src="{% static 'booking/js/booking_table_menu.js' %}"></script>
   <script src="{% static 'booking/js/booking_alerts.js' %}"></script>
