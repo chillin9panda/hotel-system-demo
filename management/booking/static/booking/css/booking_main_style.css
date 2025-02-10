@@ -107,12 +107,6 @@
   padding: 20px;
 }
 
-/*Status and search*/
-.status-overview h3,
-.search h3 {
-  margin-bottom: 10px;
-}
-
 /*status*/
 .status-overview {
   flex-direction: column;
@@ -143,49 +137,6 @@
   border-radius: 5px;
   margin: 0 auto;
   width: fit-content;
-}
-
-/*Search*/
-
-.search {
-  text-align: center;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 5px;
-  padding-bottom: 180px;
-  margin-top: 30px;
-
-}
-
-.search input {
-  text-align: center;
-  padding: 8px;
-  font-size: 14px;
-  width: 200px;
-  margin-right: 10px;
-}
-
-.search-btn {
-  height: 30px;
-  width: 70px;
-  padding: 8px, 15px;
-  background-color: #1e45c5;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.search-btn:hover {
-  background-color: #153a8f;
-}
-
-.search input[type="text"] {
-  height: 40px;
-  border-radius: 20px;
-  margin-top: 25px;
 }
 
 /*Book room*/
