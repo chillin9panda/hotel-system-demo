@@ -24,6 +24,12 @@ function showViewRooms() {
 }
 
 
+function showSearchResults() {
+  hideAllSections();
+  document.getElementById('search-results-section').style.display = 'block';
+}
+
+
 // clear form
 function resetForm() {
   const createBookingForm = document.querySelector('#book-room-section form');
@@ -37,7 +43,7 @@ function hideAllSections() {
   document.getElementById('book-room-section').style.display = 'none';  // Hide Book Room section
   document.getElementById('view-rooms-section').style.display = 'none'; // Hide View Rooms section
   document.getElementById('bookings-section').style.display = 'none';
-
+  document.getElementById('search-results-section').style.display = 'none';
 
   resetForm();
 }
@@ -53,7 +59,14 @@ function saveActiveSection(section) {
   localStorage.setItem('activeSection', section);
 }
 
-// Event Listeners for navigation links
+// switch tabs
+const search = 'search';
+document.getElementById('search').addEventListener('click', function(event) {
+  event.preventDefault();
+  showSearchResults();
+  saveActiveSection(search);
+});
+
 const home_link = 'home-link';
 document.getElementById(home_link).addEventListener('click', function(event) {
   event.preventDefault();
@@ -99,6 +112,33 @@ window.onload = function() {
   else if (activeSection === bookings_link) showBookings();
   else if (activeSection === book_room_link) showBookRoom();
   else if (activeSection === view_rooms_link) showViewRooms();
+  else if (activeSection == search) showSearchResults();
 };
 
+// Submit search with icon 
+function validateAndSubmitSearch(icon) {
 
+  let form = icon.closest('form');
+  let input = form.querySelector('input[name="phone_number"]');
+
+  if (input.value.trim() === "") {
+    alert("Enter a phone number to search.");
+    return;
+  }
+
+  form.submit();
+}
+
+
+// returning home after searching 
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", function(event) {
+      event.preventDefault();
+
+      if (window.location.pathname !== "/booking/") {
+        window.location.href = "/booking/";
+      }
+    });
+  });
+});

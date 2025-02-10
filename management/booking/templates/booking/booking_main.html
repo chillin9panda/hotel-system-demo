@@ -20,11 +20,15 @@
       <form action="{% url 'booking:search_booking' %}" method="GET">
         <div class="search-container">
           <div class="search-bar-container">
-            <input type="text" name="phone_number" placeholder="Enter Phone Number">
+            <input type="text" name="phone_number" placeholder="Search Booking..." required />
           </div>
 
           <div class="search-icon-container">
-            <img src="{% static 'icons/search-icon/icons8-search-50.svg' %}" alt="Search Icon" class="search-icon" onclick="this.closest('form').submit();">
+            <img src="{% static 'icons/search-icon/icons8-search-50.svg' %}" 
+              alt="Search Icon" 
+              id="search" 
+              class="search-icon" 
+              onclick="validateAndSubmitSearch(this)">
           </div>
         </div>
       </form>
@@ -58,39 +62,34 @@
       <div class="status-cards"><span>Available Rooms: {{ available_count }}</span> </div>
       <div class="status-cards"><span>Booked Rooms: {{ booked_count }} </span> </div>
     </div>
-
-    <div class="search">
-      <form action="{% url 'booking:search_booking' %}" method="GET">
-        <h3>Search Booking</h3>
-        <input type="text" name="phone_number" placeholder="Enter Phone Number">
-       <button type="submit" class="search-btn">Search</button>
-      </form>
-      <br>
-      {% if search_query %}
-      <h3>Search Results for "{{ search_query }}"</h3>
-        <table class="search-result">
-          <tr>
-            <th>Booking</th>
-            <th>Guest Name</th>
-            <th>Phone Number</th>
-            <th>Room Number</th>
-            <th>Status</th>
-          </tr>
-          {% for booking in bookings %}
-            <tr>
-              <td>{{ booking.booking_id }}</td>
-              <td>{{ booking.guest.first_name }} {{ booking.guest.last_name }} </td>
-              <td>{{ booking.guest.phone_number }}</td>
-              <td>{{ booking.room.room_number }}</td>
-              <td>{{ booking.status }}</td>
-            </tr>
-          {% endfor %}
-        </table>
-      {% else %}
-        <p class="no-result">No Booking Found.</p>
-      {% endif %}
-    </div>
   </div>
+
+  <!--search-result-->
+  <div id="search-results-section" style="display: none;">
+    {% if bookings %}
+      <h3>Search Results for "{{ search_query }}"</h3>
+      <table class="search-result">
+        <tr>
+          <th>Booking</th>
+          <th>Guest Name</th>
+          <th>Phone Number</th>
+          <th>Room Number</th>
+          <th>Status</th>
+        </tr>
+        {% for booking in bookings %}
+          <tr>
+            <td>{{ booking.booking_id }}</td>
+            <td>{{ booking.guest.first_name }} {{ booking.guest.last_name }} </td>
+            <td>{{ booking.guest.phone_number }}</td>
+            <td>{{ booking.room.room_number }}</td>
+            <td>{{ booking.status }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+    <p class="no-result">No Booking Found for "{{ search_query }}".</p>
+    {% endif %}
+    </div>
 
   <!--bookings-->
   <div id="bookings-section" style="display: none;">
@@ -231,8 +230,8 @@
 
   <script src="{% static 'booking/js/reception_tabs.js' %}"></script>
   <script src="{% static 'booking/js/booking_table_menu.js' %}"></script>
-  <script src="{% static 'booking/js/booking_alerts.js' %}">
-  </script>
+  <script src="{% static 'booking/js/booking_alerts.js' %}"></script>
+  <script src="{% static 'js/dynamic_date.js' %}"></script>
 </body>
 
 </html>
