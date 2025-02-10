@@ -9,12 +9,26 @@
 	<link rel="stylesheet" href="{% static 'booking/css/booking_main_style.css' %}" />
   <link rel="stylesheet" href="{% static 'booking/css/table.css' %}" />
   <link rel="stylesheet" href="{% static 'booking/css/search-results.css' %}">
+  <link rel="stylesheet" href="{% static 'css/search_bar.css' %}">
 </head>
 
 <body>
 	<header class="nav-bar">
 		<div class="container">
 			<h1>Reception</h1>
+
+      <form action="{% url 'booking:search_booking' %}" method="GET">
+        <div class="search-container">
+          <div class="search-bar-container">
+            <input type="text" name="phone_number" placeholder="Enter Phone Number">
+          </div>
+
+          <div class="search-icon-container">
+            <img src="{% static 'icons/search-icon/icons8-search-50.svg' %}" alt="Search Icon" class="search-icon" onclick="this.closest('form').submit();">
+          </div>
+        </div>
+      </form>
+
 			<nav>
 				<ul class="nav-links">
 					<li><a href="#" id="home-link">Home</a></li>
