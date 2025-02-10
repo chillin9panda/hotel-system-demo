@@ -54,6 +54,17 @@ function hideAllSections() {
   resetForm();
 }
 
+//Highlight Active tab
+function highlightActiveLink(linkId) {
+  document.querySelectorAll('.nav-links li a').forEach(link => link.classList.remove('active'));
+  document.getElementById(linkId).classList.add('active');
+}
+
+//Save active section for reload
+function saveActiveSection(section) {
+  localStorage.setItem('activeSection', section);
+}
+
 // Event Listeners for navigation links
 const home_link = 'home-link';
 document.getElementById(home_link).addEventListener('click', function(event) {
@@ -87,16 +98,6 @@ document.getElementById(bookings_link).addEventListener('click', function(event)
   saveActiveSection(bookings_link);
 });
 
-//Highlight Active tab
-function highlightActiveLink(linkId) {
-  document.querySelectorAll('.nav-links li a').forEach(link => link.classList.remove('active'));
-  document.getElementById(linkId).classList.add('active');
-}
-
-//Save active section for reload
-function saveActiveSection(section) {
-  localStorage.setItem('activeSection', section);
-}
 
 //Logout btn event listner
 document.querySelector('.logout-btn').addEventListener('click', function(event) {

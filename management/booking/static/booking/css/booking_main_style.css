@@ -50,6 +50,10 @@
   color: #663300;
 }
 
+.nav-links li a.active {
+  color: #004896;
+}
+
 /* Logout Button*/
 .logout-btn {
   text-decoration: none;
