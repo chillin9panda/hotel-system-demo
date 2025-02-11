@@ -4,11 +4,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Manager</title>
-
     <link rel="stylesheet" href="{% static 'manager/css/manager_main_style.css' %}"/>
-    <link rel="stylesheet" href="{% static 'manager/css/manager_reception_style.css' %}" />
     <link rel="stylesheet" href="{% static 'css/nav-bar.css' %}">
     <link rel="stylesheet" href="{% static 'css/table.css' %}">
   </head>
@@ -125,82 +122,8 @@
       <!--Receptions-->
       <div id="reception-section" class="employee-manage" style="display: none">
         <h1>Reception</h1>
-        <div id="add-rooms" class="add-new">
-          <form
-            id="add-room-form"
-            action="{% url 'manager:add_room' %}"
-            class="add-form"
-            method="POST"
-            autocomplete="off"
-          >
-            {% csrf_token %}
-            <div class="add-form-group">
-              <label for="room_number">Room Number:</label>
-              <input type="text" id="room_number" name="room_number" required />
-            </div>
-
-            <div class="add-form-group">
-              <label for="room_type">Room Type:</label>
-              <select id="room_type" name="room_type" required>
-                <option value="Single">Single</option>
-                <option value="Double">Double</option>
-              </select>
-            </div>
-
-            <div class="add-form-group">
-              <label for="price">Price:</label>
-              <input
-                type="number"
-                id="price"
-                name="price"
-                step="0.01"
-                required
-              />
-            </div>
-
-            <div class="add-form-group">
-              <label for="room_status">Room Status:</label>
-              <select id="room_status" name="room_status" required>
-                <option value="Available">Available</option>
-                <option value="Booked">Booked</option>
-                <option value="Maintenance">Maintenance</option>
-              </select>
-            </div>
-
-            <button class="add-btn" type="submit">Add Room</button>
-          </form>
-        </div>
-
-      <!-- Services -->
-        <div id="add-service" class="add-new">
-          <form
-            id="add-service-form"
-            action="{% url 'manager:add_service' %}"
-            class="add-form"
-            method="POST"
-            autocomplete="off"
-          >
-            {% csrf_token %}
-            <div class="add-form-group">
-              <label for="service_name">Service Name: </label>
-              <input type="text" id="service_name" name="service_name" required />
-            </div>
-
-            <div class="add-form-group">
-              <label for="service_price">Price: </label>
-              <input
-                type="number"
-                id="price"
-                name="service_price"
-                step="0.01"
-                required
-              />
-            </div>
-
-            <button class="add-btn" type="submit">Add Service</button>
-          </form>
-        </div>
-
+        <a href="{% url 'manager:add_room' %}">Add Room</a>
+        <a href="{% url 'manager:add_service' %}">Add Service</a>
       </div>
 
       <!--Reports-->

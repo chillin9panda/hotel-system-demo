@@ -44,7 +44,7 @@ def add_room(request):
             return JsonResponse({
                 'success': False,
                 'message': f'Error{str(e)}'})
-    return render(request, 'manager/manager_main.html')
+    return render(request, 'manager/add_room.html')
 
 
 def add_service(request):
@@ -65,7 +65,7 @@ def add_service(request):
             return JsonResponse({
                 'success': False,
                 'message': f'Error{str(e)}'})
-    return render(request, 'manager/manager_main.html')
+    return render(request, 'manager/add_service.html')
 
 
 def manager_home(request):
