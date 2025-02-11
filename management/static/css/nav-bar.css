@@ -7,12 +7,12 @@
 }
 
 .logo {
-  font-size: 28px;
-  margin-left: 20px;
+  font-size: 27px;
+  margin-left: 15px;
 }
 
 .nav-links {
-  margin-left: 300px;
+  margin-left: 20px;
   list-style: none;
   display: flex;
   gap: 25px;

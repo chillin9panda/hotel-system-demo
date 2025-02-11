@@ -9,24 +9,56 @@
 
     <link rel="stylesheet" href="{% static 'manager/css/manager_main_style.css' %}"/>
     <link rel="stylesheet" href="{% static 'manager/css/manager_reception_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/nav-bar.css' %}">
   </head>
+
   <body>
+
     <header class="nav-bar">
-      <div class="navigation">
-        <h1>Manager</h1>
-        <nav>
-          <ul class="nav-links">
+		  <div class="container">
+		  	<h1 class="logo">Manager</h1>
+
+			  <nav>
+				  <ul class="nav-links">
             <li><a href="#" id="home-link">Home</a></li>
             <li><a href="#" id="employees-link">Employees</a></li>
             <li><a href="#" id="reception-link">Reception</a></li>
-            <li><a href="#" id="reports-link">Reports</a></li>
+            <li><a href="#" id="reports-link">Report</a></li>
+				  </ul>
+			  </nav>
 
-            <!--add notification  icon later-->
-            <a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
-          </ul>
-        </nav>
-      </div>
-    </header>
+        <form action="{% url 'booking:search_booking' %}" method="GET">
+          <div class="search-container" id="search-container">
+            <div class="search-bar-container">
+              <input type="text" name="phone_number" placeholder="Search..." required id="search-bar" class="search-bar" />
+            </div>
+
+            <div class="search-icon-container">
+              <img src="{% static 'icons/search-icon/icons8-search-50.svg' %}" 
+              alt="Search Icon" 
+              id="search" 
+              class="search-icon" 
+              >
+            </div>
+          </div>
+        </form>
+
+        <div class="settings-dropdown">
+          <img src="{% static 'icons/notification-icon/icons8-notification-50.svg' %}" alt="Notification Icon" class="notification-icon">
+          <img src="{% static 'icons/settings-icon/icons8-settings-50.svg' %}" 
+            alt="Settings Icon" 
+            class="settings-icon"
+            onclick="toggleDropdown()"
+          >
+
+          <div class='dropdown-menu' id="dropdown-menu">
+            <a href="#">Change Password</a>
+            <hr>
+					  <a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
+          </div>
+        </div>
+		</div>
+	</header>
 
     <div id="wrapper">
       <!-- Home Section -->
@@ -45,11 +77,13 @@
             <div class="status-cards"><span>Pending Requests: 0</span></div>
           </div>
 
-          <div class="search">
-            <h3>Search Employee</h3>
-            <input type="text" placeholder="Enter Employee Id" />
-            <button class="search-btn">Search</button>
+          <div class="status-overview">
+            <h3>Quick Status</h3>
+            <div class="status-cards"><span>Active Booking: 15 </span></div>
+            <div class="status-cards"><span>On Duty Today: 10</span></div>
+            <div class="status-cards"><span>Pending Requests: 0</span></div>
           </div>
+
         </div>
       </div>
 
@@ -146,6 +180,8 @@
       </div>
     </div>
   </body>
+
+  <script src="{% static 'js/nav-bar-toggles.js' %}"></script>
   <script src="{% static 'manager/js/manager_main_script.js' %}"></script>
   <script src="{% static 'js/dynamic_date.js' %}"></script
 </html>

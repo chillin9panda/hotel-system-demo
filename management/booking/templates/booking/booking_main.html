@@ -26,8 +26,8 @@
 				</ul>
 			</nav>
 
-      <form action="{% url 'booking:search_booking' %}" method="GET">
-        <div class="search-container" id="search-container">
+      <div class="search-container" id="search-container">
+        <form action="{% url 'booking:search_booking' %}" method="GET">
           <div class="search-bar-container">
             <input type="text" name="phone_number" placeholder="Search Booking..." required id="search-bar" class="search-bar" />
           </div>
@@ -39,23 +39,23 @@
               class="search-icon" 
               onclick="validateAndSubmitSearch(this)">
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
 
-        <div class="settings-dropdown">
-          <img src="{% static 'icons/notification-icon/icons8-notification-50.svg' %}" alt="Notification Icon" class="notification-icon">
-          <img src="{% static 'icons/settings-icon/icons8-settings-50.svg' %}" 
-            alt="Settings Icon" 
-            class="settings-icon"
-            onclick="toggleDropdown()"
-          >
+      <div class="settings-dropdown">
+        <img src="{% static 'icons/notification-icon/icons8-notification-50.svg' %}" alt="Notification Icon" class="notification-icon">
+        <img src="{% static 'icons/settings-icon/icons8-settings-50.svg' %}" 
+          alt="Settings Icon" 
+          class="settings-icon"
+          onclick="toggleDropdown()"
+        >
 
-          <div class='dropdown-menu' id="dropdown-menu">
-            <a href="#">Change Password</a>
-            <hr>
-					  <a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
-          </div>
+        <div class='dropdown-menu' id="dropdown-menu">
+          <a href="#">Change Password</a>
+          <hr>
+				  <a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
         </div>
+      </div>
 		</div>
 	</header>
 
