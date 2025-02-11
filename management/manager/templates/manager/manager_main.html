@@ -90,6 +90,34 @@
       <!--Employee-->
       <div id="employees-section" class="employee-manage" style="display: none">
         <h1>Employee</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>No. </th>
+              <th>Name</th>
+              <th>Phone Number</th>
+              <th>Sex</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for employee in active_employees  %}  
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ employee.first_name }}  {{ employee.last_name }}</td>
+              <td>{{ employee.phone_number }}</td>
+              <td>{{ employee.sex }}</td>
+              <td>{{ employee.role }}</td>
+            </tr>
+
+            {% empty %}
+            <tr>
+              <td colspan="5">No Active Employees</td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
         <a href="{% url 'manager:add_employee' %}">Add Employee</a>
       </div>
 

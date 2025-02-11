@@ -7,18 +7,12 @@ from .forms import EmployeeForm
 
 # Create your views here.
 
-def view_employees(request):
-    employees = Employee.objects
-
-    return render(request, 'manager/manager_main.html')
-
-
 def add_employee(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('success_url')
+            return redirect('manager:home')
     else:
         form = EmployeeForm()
 
@@ -75,4 +69,9 @@ def add_service(request):
 
 
 def manager_home(request):
-    return render(request, 'manager/manager_main.html')
+    active_employees = Employee.objects.filter(is_active=True)
+
+    return render(request,
+                  'manager/manager_main.html', {
+                      'active_employees': active_employees,
+                  })
