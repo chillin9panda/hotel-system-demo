@@ -179,7 +179,7 @@ def view_payments(request, booking_id):
                   'booking/view_payments.html', {
                       'service_payments': service_payments,
                       'booking_payments': booking_payments,
-                      'room_number': bookings.room,
+                      'room_number': bookings.room.room_number,
                   })
 
 
