@@ -4,9 +4,37 @@
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
+  padding: 20px;
+  width: 100%;
 }
 
-.employee-manage>div {
+.reception-section-table {
   flex: 1;
   min-width: 45%;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.listing-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.employee-manage a {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  padding: 8px 12px;
+  background-color: #28a745;
+  ;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+a:hover {
+  background-color: #218838;
 }
