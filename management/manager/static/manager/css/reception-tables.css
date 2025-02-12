@@ -1,0 +1,12 @@
+.employee-manage {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.employee-manage>div {
+  flex: 1;
+  min-width: 45%;
+}

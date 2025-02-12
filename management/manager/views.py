@@ -70,8 +70,12 @@ def add_service(request):
 
 def manager_home(request):
     active_employees = Employee.objects.filter(is_active=True)
+    services = Services.objects.all()
+    rooms = Room.objects.all()
 
     return render(request,
                   'manager/manager_main.html', {
                       'active_employees': active_employees,
+                      'services': services,
+                      'rooms': rooms,
                   })

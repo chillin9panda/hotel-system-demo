@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manager</title>
     <link rel="stylesheet" href="{% static 'manager/css/manager_main_style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'manager/css/reception-tables.css' %}">
     <link rel="stylesheet" href="{% static 'css/nav-bar.css' %}">
     <link rel="stylesheet" href="{% static 'css/table.css' %}">
   </head>
@@ -122,8 +123,60 @@
       <!--Receptions-->
       <div id="reception-section" class="employee-manage" style="display: none">
         <h1>Reception</h1>
-        <a href="{% url 'manager:add_room' %}">Add Room</a>
-        <a href="{% url 'manager:add_service' %}">Add Service</a>
+        <div>
+          <table class="listing-table">
+            <thead>
+              <tr>
+                <th>Room No.</th>
+                <th>Room Type</th>
+                <th>Room Price</th>
+                <th>Room Status</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for room in rooms  %}  
+              <tr>
+                <td>{{ room.room_number }}</td>
+                <td>{{ room.room_type }}</td>
+                <td>{{ room.price }}</td>
+                <td>{{ room.room_status }}</td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="5">No Active Employees</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+          <a href="{% url 'manager:add_room' %}">Add Room</a>
+        </div>
+
+        <div>
+          <table class="listing-table">
+            <thead>
+              <tr>
+                <th>No. </th>
+                <th>Service Name</th>
+                <th>Service Price</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for service in services  %}  
+              <tr>
+                <td>{{ service.service_id }}</td>
+                <td>{{ service.service_name }}</td>
+                <td>{{ service.service_price }}</td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="5">No Active Employees</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+          <a href="{% url 'manager:add_service' %}">Add Service</a>
+        </div>
       </div>
 
       <!--Reports-->
