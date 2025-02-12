@@ -162,7 +162,7 @@ def room_service(request, booking_id):
                   'booking/room_service.html', {
                       'booking': booking,
                       'guest_name': f"{guest.first_name} {guest.last_name}",
-                      'room': booking.room,
+                      'room': booking.room.room_number,
                       'phone_number': guest.phone_number,
                       'services': services,
                       'used_services': used_services,
