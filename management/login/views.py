@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, get_user_model
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 
 # Create your views here.
 
-DEAFAUT_PASSWORD = 'temp@123'
-
 
 def login_view(request):
+    DEAFAUT_PASSWORD = 'temp@123'
+
     if request.method == "POST":
         employee_id = request.POST.get("employee_id")
         password = request.POST.get("password")
@@ -42,7 +42,7 @@ def login_view(request):
     return render(request, "login/login.html")
 
 
-def change_password_view(request):
+def new_login_view(request):
     User = get_user_model()
 
     if request.method == "POST":
@@ -50,17 +50,21 @@ def change_password_view(request):
         new_password = request.POST.get("new_password")
         confirm_password = request.POST.get("confirm_password")
 
+        user = User.objects.get(employee_id=employee_id)
+
         if new_password != confirm_password:
             return render(request, 'login/new_login.html', {
                 'error_message': 'Passwords do not match',
+                'user': user,
             })
 
-        user = User.objects.get(employee_id=employee_id)
-        user.password = make_password(new_password)
+        # user.password = make_password(new_password)
+        user.set_password(new_password)
 
         user.save()
 
         return redirect('login:login')
+    return redirect('login:login')
 
 
 def logout_view(request):

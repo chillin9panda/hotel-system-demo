@@ -9,7 +9,7 @@ class LoginRequiredMiddleware:
 
     def __call__(self, request):
         if not request.user.is_authenticated:
-            if request.path != '/login/login/':
+            if request.path not in ['/login/login/', '/login/new_login/']:
                 return redirect(reverse('login:login'))
 
         if request.user.is_authenticated:

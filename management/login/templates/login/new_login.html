@@ -10,7 +10,7 @@
 <body>
   <div class="loginbox">
     <h1>Set Password</h1>
-      <form action="{% url 'login:change_password' %}" method = "POST">
+      <form action="{% url 'login:new_login' %}" method = "POST">
         {%csrf_token%}
         <input type="hidden" name="employee_id" value="{{ user.employee_id }}">
         <p>New Password</p>
