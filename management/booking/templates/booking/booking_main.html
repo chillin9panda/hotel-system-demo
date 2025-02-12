@@ -210,7 +210,7 @@
         <label for="room-number">Room Number: </label>
         <select id = "room-number" name="room_number" required>
           <option value="" disable selected>Select Room</option>
-          {% for room in rooms %}
+          {% for room in available_rooms %}
             <option value="{{ room.room_number }}">{{ room.room_number }}</option>	
           {% endfor %}
         </select>

@@ -236,11 +236,11 @@ def is_receptionist(user):
 
 @user_passes_test(is_receptionist, login_url='/login/')
 def booking_main(request):
-    rooms = Room.objects.all()
+    all_rooms = Room.objects.all().order_by('room_number')
     available_rooms = Room.objects.filter(room_status='Available')
     booked_rooms = Room.objects.filter(room_status='Booked')
 
-    total_rooms = rooms.count()
+    total_rooms = all_rooms.count()
     available_count = available_rooms.count()
     booked_count = booked_rooms.count()
 
@@ -254,8 +254,8 @@ def booking_main(request):
                       'total_rooms': total_rooms,
                       'available_count': available_count,
                       'booked_count': booked_count,
-                      'all_rooms': rooms,
-                      'rooms': available_rooms,
+                      'all_rooms': all_rooms,
+                      'available_rooms': available_rooms,
                       'booking_data': booking_data,
                   })
 

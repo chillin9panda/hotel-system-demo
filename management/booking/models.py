@@ -16,7 +16,7 @@ class Room(models.Model):
         ('Maintenance', 'Maintenance'),
     ]
 
-    room_number = models.CharField(max_length=10, primary_key=True)
+    room_number = models.PositiveIntegerField(primary_key=True)
     room_type = models.CharField(
         max_length=20, choices=ROOM_TYPE_CHOICES, default='Single')
     price = models.DecimalField(max_digits=8, decimal_places=2)
@@ -25,9 +25,6 @@ class Room(models.Model):
 
     def __str__(self):
         return self.room_number
-
-    class Meta:
-        ordering = ['room_number']  # sort by room number
 
 
 class Guest(models.Model):
