@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       if (payment_status === "Paid") {
         alert("This Service/Booking is already paid for!");
+        location.reload();
       } else {
         const payments_section = document.getElementById("payments-section");
         payments_section.style.display = "block";
