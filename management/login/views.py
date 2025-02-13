@@ -33,8 +33,10 @@ def login_view(request):
                 return redirect('booking:home')
             elif user.role == 'System Admin':
                 return redirect('admin:index')
-            elif user.role == "Manager":
+            elif user.role == 'Manager':
                 return redirect('manager:home')
+            elif user.role == 'Cashier':
+                return redirect('cashier:home')
             else:
                 return render(request, 'login/no_role.html')
         else:

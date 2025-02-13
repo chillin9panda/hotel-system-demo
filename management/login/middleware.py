@@ -20,5 +20,8 @@ class LoginRequiredMiddleware:
             if request.path.startswith('/manager/') and request.user.role != 'Manager':
                 return HttpResponseForbidden("You are not authorized to view this page")
 
+            if request.path.startswith('/cashier/') and request.user.role != 'Cashier':
+                return HttpResponseForbidden("You are not authorized to view this page")
+
         response = self.get_response(request)
         return response
