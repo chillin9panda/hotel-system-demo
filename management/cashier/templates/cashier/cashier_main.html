@@ -5,12 +5,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <link href="css/style.css" rel="stylesheet">
+  <title>Cashier</title>
+  <link rel="stylesheet" href="{% static 'cashier/css/cashier-main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/nav-bar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/side-nav-bar.css' %}">
 </head>
 
 <body>
-  <h1>Cashier</h1>
+  <header class="nav-bar">
+    <div class="container">
+      <img src="{% static 'icons/menu-icon/icons8-menu-50.svg' %}" alt="Menu Icon" class="side-menu-icon">
+      <h1 class="logo">Cashier</h1>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#" id="1">1</a></li>
+          <li><a href="#" id="2">2</a></li>
+          <li><a href="#" id="3">3</a></li>
+          <li><a href="#" id="4">4</a></li>
+        </ul>
+      </nav>
+
+      <form action="" method="GET">
+        <div class="search-container" id="search-container">
+          <div class="search-bar-container">
+            <input type="text" name="phone_number" placeholder="Search..." required id="search-bar"
+              class="search-bar" />
+          </div>
+
+          <div class="search-icon-container">
+            <img src="{% static 'icons/search-icon/icons8-search-50.svg' %}" alt="Search Icon" id="search"
+              class="search-icon">
+          </div>
+        </div>
+      </form>
+
+      <div class="settings-dropdown">
+        <img src="{% static 'icons/notification-icon/icons8-notification-50.svg' %}" alt="Notification Icon"
+          class="notification-icon">
+        <img src="{% static 'icons/settings-icon/icons8-settings-50.svg' %}" alt="Settings Icon" class="settings-icon"
+          onclick="toggleDropdown()">
+
+        <div class='dropdown-menu' id="dropdown-menu">
+          <a href="#">Change Password</a>
+          <hr>
+          <a href="{% url 'login:logout' %}" class="logout-btn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <script src="{% static 'js/nav-bar-toggles.js' %}"></script>
 </body>
 
 </html>
