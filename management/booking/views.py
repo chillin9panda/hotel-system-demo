@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import ValidationError
 from .models import Room, Guest, Booking, Services
 from payments.models import Booking_Payments, Service_Payments
@@ -230,11 +229,6 @@ def search_booking(request):
                   })
 
 
-def is_receptionist(user):
-    return user.role == 'Receptionist'
-
-
-@user_passes_test(is_receptionist, login_url='/login/')
 def booking_main(request):
     all_rooms = Room.objects.all().order_by('room_number')
     available_rooms = Room.objects.filter(room_status='Available')
