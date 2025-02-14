@@ -100,8 +100,8 @@
             </tr>
           </thead>
           <tbody>
-            {% for employee in active_employees  %}  
-            <tr>
+            {% for employee in active_employees  %}
+            <tr data-employee-id="{{ employee.employee_id }}">
               <td>{{ forloop.counter }}</td>
               <td>{{ employee.first_name }}  {{ employee.last_name }}</td>
               <td>{{ employee.phone_number }}</td>
@@ -190,5 +190,6 @@
 
   <script src="{% static 'js/nav-bar-toggles.js' %}"></script>
   <script src="{% static 'manager/js/manager_main_script.js' %}"></script>
-  <script src="{% static 'js/dynamic_date.js' %}"></script
+  <script src="{% static 'js/dynamic_date.js' %}"></script>
+  <script src="{% static 'manager/js/employees.js' %}"></script>
 </html>

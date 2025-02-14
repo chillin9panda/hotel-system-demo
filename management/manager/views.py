@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from booking.models import Room, Services
 from login.models import Employee
@@ -66,6 +66,13 @@ def add_service(request):
                 'success': False,
                 'message': f'Error{str(e)}'})
     return render(request, 'manager/add_service.html')
+
+
+def employee_details(request, employee_id):
+    employee = get_object_or_404(Employee, employee_id=employee_id)
+    return render(request, 'manager/employee.html', {
+        'employee': employee,
+    })
 
 
 def manager_home(request):
