@@ -2,3 +2,33 @@
   width: 30px;
   height: 30px;
 }
+
+.side-nav {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 40px;
+  left: -215px;
+  background-color: #333;
+  padding-top: 20px;
+  transition: left 0.3s ease;
+}
+
+.side-nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.side-nav ul li {
+  padding: 15px;
+}
+
+.side-nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+.side-nav.open {
+  left: 0;
+}

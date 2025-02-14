@@ -14,7 +14,7 @@
 <body>
   <header class="nav-bar">
     <div class="container">
-      <img src="{% static 'icons/menu-icon/icons8-menu-50.svg' %}" alt="Menu Icon" class="side-menu-icon">
+      <img src="{% static 'icons/menu-icon/icons8-menu-50.svg' %}" alt="Menu Icon" class="side-menu-icon" id="side-menu-toggle">
       <h1 class="logo">Cashier</h1>
 
       <nav>
@@ -55,8 +55,19 @@
     </div>
   </header>
 
+  <!--side-nav-->
+  <nav class="side-nav" id="side-nav">
+    <ul>
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Orders</a></li>
+      <li><a href="#">Payment</a></li>
+      <li><a href="#">Items</a></li>
+    </ul>
+  </nav>
+
 
   <script src="{% static 'js/nav-bar-toggles.js' %}"></script>
+  <script src="{% static 'js/side-nav-bar-toggle.js' %}"></script>
 </body>
 
 </html>
