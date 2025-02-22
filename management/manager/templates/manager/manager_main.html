@@ -184,6 +184,57 @@
       <!--Reports-->
       <div id="reports-section" class="employee-manage" style="display: none">
         <h1>Report</h1>
+
+        <div class="report">
+          <form id="report-form" method="GET" action="{% url 'manager:generate_report' %}">
+            <label for="start_date">From: </label>
+            <input type="date" id="start_date" name="start_date" required>
+
+            <label for="end_date">To: </label>
+            <input type="date" id="end_date" name="end_date" required>
+
+            <button type="submit">Generate</button>
+          </form>
+
+          <div id="report-result">
+            {% if transactions %}
+              <table border="1">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Payment Type</th>
+                    <th>Amount (ETB)</th>
+                    <th>Date</th>
+                    <th>Payment Method</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for transaction in transactions %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>
+                        {% if transaction.service_payment_id  %}
+                          {{ transaction.service_payment_id.service_name }}</td>
+                        {% else %}
+                          Booking
+                        {% endif %}
+                      </td>
+                      <td>{{ transaction.payed_amount }}</td>
+                      <td>{{ transaction.transaction_date }}</td>
+                      <td>{{ transaction.payment_method }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <br>
+              <a href="{% url 'manager:export_report' %}?start_date={{ start_date }}&end_date={{ end_date }}">
+                <button>Download Excel</button>
+              </a>
+            {% else %}
+              <p>No transactions Found</p>
+            {% endif %}
+          </div>
+        </div>
       </div>
     </div>
   </body>

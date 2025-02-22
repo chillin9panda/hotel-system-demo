@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from booking.models import Room, Services
 from login.models import Employee
 from .forms import EmployeeForm
+import csv
+import datetime
+from transaction.models import Reception
+from django.utils.timezone import make_aware
 
 
 # Create your views here.
@@ -73,6 +77,47 @@ def employee_details(request, employee_id):
     return render(request, 'manager/employee.html', {
         'employee': employee,
     })
+
+
+def generate_report(request):
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+
+    transactions = []
+    if start_date and end_date:
+        transactions = Reception.objects.filter(
+            transaction_date__range=[start_date, end_date])
+
+    return render(request, 'manager/manager_main.html', {
+        'transactions': transactions,
+        'start_date': start_date,
+        'end_date': end_date,
+    })
+
+
+def export_report(request):
+    start_date = make_aware(datetime.datetime.strptime(
+        request.GET.get('start_date'), "%Y-%m-%d"))
+    end_date = make_aware(datetime.datetime.strptime(
+        request.GET.get('end_date'), "%Y-%m-%d"))
+
+    transactions = Reception.objects.filter(
+        transaction_date__range=[start_date, end_date])
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachement: filename="report_{
+        start_date}_to_{end_date}.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['No.', 'Payment Type', 'Amount',
+                    'Date', 'Payment Method'])
+
+    for index, transaction in enumerate(transactions, start=1):
+        payment_type = transaction.service_payment_id.service_id.service_name if transaction.service_payment_id else transaction.booking_payment_id
+        writer.writerow([index, payment_type, transaction.payed_amount,
+                        transaction.transaction_date, transaction.payment_method])
+
+    return response
 
 
 def manager_home(request):

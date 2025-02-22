@@ -33,7 +33,7 @@ class Booking_Payments(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"Payment {self.payment_id} for Booking {self.booking_id}"
+        return f"Booking {self.booking_id_id}"
 
 
 class Service_Payments(models.Model):
