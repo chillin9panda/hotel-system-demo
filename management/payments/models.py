@@ -58,3 +58,17 @@ class Service_Payments(models.Model):
 
     def __str__(self):
         return self.service_payment_id
+
+
+class Order_Payments(models.Model):
+    payment_id = models.AutoField(primary_key=True)
+    customer = models.ForeignKey(
+        'cashier.Customer', on_delete=models.CASCADE, related_name='order_payments')
+    payment_status = models.CharField(
+        max_length=15, choices=PAYMENT_STATUS_CHOICES, default='Unpaid')
+
+    @property
+    def total_amount(self):
+        total_price = sum(
+            order.total_price for order in self.customer.order.all())
+        return total_price
