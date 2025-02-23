@@ -104,9 +104,12 @@ def export_report(request):
     transactions = Reception.objects.filter(
         transaction_date__range=[start_date, end_date])
 
+    formatted_start_date = start_date.strftime("%Y-%m-%d")
+    formatted_end_date = end_date.strftime("%Y-%m-%d")
+
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = f'attachement: filename="report_{
-        start_date}_to_{end_date}.csv"'
+    response['Content-Disposition'] = f'attachment; filename="report_{
+        formatted_start_date}_to_{formatted_end_date}.csv"'
 
     writer = csv.writer(response)
     writer.writerow(['No.', 'Payment Type', 'Amount',
